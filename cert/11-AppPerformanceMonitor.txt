@@ -1,0 +1,20 @@
+Q1) What is performance monitoring? How is it implemented for Cloud Foundry applications?
+As a prerequisite to PCF monitoring, you need an account with a monitoring platform such as SignalFx, Datadog, OpenTDSB, New Relic, vRealize Operations (vROPS), AppDynamics, or another tool.
+
+To set up PCF monitoring, you then configure PCF and your monitoring platform as follows:
+
+In PCF:
+Install a nozzle that extracts BOSH and CF metrics from the Firehose and sends them to the monitoring platform.
+(Optional) Deploy smoke tests or other apps that generate custom metrics. Pivotal recommends custom metrics for production environments.
+In your monitoring platform:
+Customize a dashboard that lets you check and diagnose system health.
+Create alerts that generate communications regarding attention-worthy conditions.
+
+Q2) Why is a buildpack involved?
+
+Q3) What APM tools are available with Cloud Foundry?
+AppDynamics Service Broker
+Dynatrace Service Broker for PCF
+ISS Knowtify Search Analytics for PCF
+New Relic Service Broker for PCF
+WombatOAM Erlang Monitoring [beta]

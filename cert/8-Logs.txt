@@ -1,0 +1,20 @@
+Q1) What is a log drain?
+
+Log Drains let you collect stdout and stderr logs from your apps and databases deployed on PCF and route them to a log destination.
+Pivotal Cloud Foundry does not persist logs. For long term storage of logs, drain logs to a third party log management service
+
+Q2) How do you create one?
+Create a User Provided Service Instance that streams logs to Papertrail.
+ cf create-user-provided-service articulate-log-drain -l syslog://<SYSLOG-DRAIN-URL>
+
+ Bind the articulate-log-drain service to the articulate application.
+ cf bind-service articulate articulate-log-drain
+
+Q3) Why would you use it?
+Visualize your logs
+Filter /search and store for long term audits
+
+Q4) What is “Syslog”?
+Cloud Foundry uses the syslog URL to route messages to the service. The syslog URL has a scheme of syslog, syslog-tls, or https, and can include a port number. For example:
+syslog://logs.example.com:1234
+Elastic Runtime does not support using syslog-tls with self-signed certificates. If you are running your own syslog server and want to use syslog-tls, you must have an SSL certificate signed by a well-known certificate authority.

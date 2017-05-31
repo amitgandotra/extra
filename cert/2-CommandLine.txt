@@ -1,0 +1,105 @@
+Q1) Do you know what cf command is used to perform the following:
+• View organizations?
+cf org ORG [--guid],  --guid      Retrieve and display the given org's guid.  All other output for the org is suppressed.
+  orgs                                   List all orgs
+   org                                    Show org info
+   create-org                             Create an org
+   delete-org                             Delete an org
+   rename-org                             Rename an org
+   spaces                                 List all spaces in an org
+   domains                                List domains in the target org
+   create-domain                          Create a domain in an org for later use
+   create-shared-domain                   Create a domain that can be used by all orgs (admin-only)
+   routes                                 List all routes in the current space or the current organization
+   org-users                              Show org users by role
+   set-org-role                           Assign an org role to a user
+   unset-org-role                         Remove an org role from a user
+   set-quota                              Assign a quota to an org
+
+Q2) • View routes?
+cf routes [--orglevel] , --orglevel      List all the routes for all spaces of current organization
+bind-route-service                     Bind a service instance to an HTTP route
+unbind-route-service                   Unbind a service instance from an HTTP route
+router-groups                          List router groups
+routes                                 List all routes in the current space or the current organization
+create-route                           Create a url route in a space for later use
+check-route                            Perform a simple check to determine whether a route currently exists or not
+map-route                              Add a url route to an app
+unmap-route                            Remove a url route from an app
+delete-route                           Delete a route
+delete-orphaned-routes                 Delete all orphaned routes (i.e. those that are not mapped to an app)
+
+Q3) • View spaces?
+ cf space SPACE [--guid] [--security-group-rules],  --guid      Retrieve and display the given org's guid.  All other output for the org is suppressed.
+spaces                                 List all spaces in an org
+space                                  Show space info
+create-space                           Create a space
+delete-space                           Delete a space
+rename-space                           Rename a space
+allow-space-ssh                        Allow SSH access for the space
+disallow-space-ssh                     Disallow SSH access for the space
+space-ssh-allowed                      Reports whether SSH is allowed in a space
+routes                                 List all routes in the current space or the current organization
+create-route                           Create a url route in a space for later use
+space-users                            Show space users by role
+set-space-role                         Assign a space role to a user
+unset-space-role                       Remove a space role from a user
+space-quotas                           List available space resource quotas
+space-quota                            Show space quota info
+create-space-quota                     Define a new space resource quota
+update-space-quota                     Update an existing space quota
+delete-space-quota                     Delete a space quota definition and unassign the space quota from all spaces
+set-space-quota                        Assign a space quota definition to a space
+unset-space-quota                      Unassign a quota from a space
+bind-security-group                    Bind a security group to a particular space, or all existing spaces of an org
+unbind-security-group                  Unbind a security group from a space
+set-space-isolation-segment            Assign the isolation segment that apps in a space are started in
+reset-space-isolation-segment          Reset the isolation segment assignment of a space to the org's default
+
+Q4) • View a single organization, route or space?
+see above
+
+Q5) • Deploy an application?
+cf push APP_NAME [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH] [--docker-image DOCKER_IMAGE]
+  [-i NUM_INSTANCES] [-k DISK] [-m MEMORY] [--hostname HOST] [-p PATH] [-s STACK] [-t TIMEOUT] [-u (process | port | http)] [--route-path ROUTE_PATH]
+  [--no-hostname] [--no-manifest] [--no-route] [--no-start] [--random-route]
+
+Q6) • Select a space and/or organization to deploy to?
+ cf target [-o ORG] [-s SPACE]
+ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] [--sso | --sso-passcode PASSCODE]
+
+Q7) • View logs?
+logs                                   Tail or show recent logs for an app
+USAGE:
+   cf logs APP_NAME
+OPTIONS:
+   --recent      Dump recent logs instead of tailing
+
+Q8) • Connect (login) to the Cloud Controller?
+cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] [--sso | --sso-passcode PASSCODE]
+NAME:
+   api - Set or view target api url
+USAGE:
+   cf api [URL]
+OPTIONS:
+   --skip-ssl-validation      Skip verification of the API endpoint. Not recommended!
+   --unset
+
+cf target [-o ORG] [-s SPACE]
+
+Q9) • Start, stop or restart an application?
+cf start APP_NAME
+ENVIRONMENT:
+   CF_STAGING_TIMEOUT=15        Max wait time for buildpack staging, in minutes
+   CF_STARTUP_TIMEOUT=5         Max wait time for app instance startup, in minutes
+
+cf stop APP_NAME
+
+cf restart APP_NAME
+ENVIRONMENT:
+   CF_STAGING_TIMEOUT=15        Max wait time for buildpack staging, in minutes
+   CF_STARTUP_TIMEOUT=5         Max wait time for app instance startup, in minutes
+
+Q10) • What does cf target do? What information does it give you?
+target - Set or view the targeted org or space
+cf target [-o ORG] [-s SPACE]

@@ -1,0 +1,64 @@
+Q1) What is a blue-green deployment? Why would you use it?
+Blue-green deployment is a technique that reduces downtime and risk by running two identical production environments called Blue and Green.
+
+At any time, only one of the environments is live, with the live environment serving all production traffic. For this example, Blue is currently live and Green is idle.
+
+As you prepare a new version of your software, deployment and the final stage of testing takes place in the environment that is not live: in this example, Green. Once you have deployed and fully tested the software in Green, you switch the router so all incoming requests now go to Green instead of Blue. Green is now live, and Blue is idle.
+
+This technique can eliminate downtime due to application deployment. In addition, blue-green deployment reduces risk: if something unexpected happens with your new version on Green, you can immediately roll back to the last version by switching back to Blue.
+
+Q2) How do you map and unmap routes with cf?
+NAME:
+   map-route - Add a url route to an app
+USAGE:
+   Map an HTTP route:
+      cf map-route APP_NAME DOMAIN [--hostname HOSTNAME] [--path PATH]
+
+   Map a TCP route:
+      cf map-route APP_NAME DOMAIN (--port PORT | --random-port)
+
+EXAMPLES:
+   cf map-route my-app example.com                              # example.com
+   cf map-route my-app example.com --hostname myhost            # myhost.example.com
+   cf map-route my-app example.com --hostname myhost --path foo # myhost.example.com/foo
+   cf map-route my-app example.com --port 5000                  # example.com:5000
+
+OPTIONS:
+   --hostname, -n      Hostname for the HTTP route (required for shared domains)
+   --path              Path for the HTTP route
+   --port              Port for the TCP route
+   --random-port       Create a random port for the TCP route
+e.g cf map-route articulate-v2 cfapps-01.haas-66.pez.pivotal.io -n articulate-heartsickening-el egance
+
+---------
+NAME:
+   unmap-route - Remove a url route from an app
+
+USAGE:
+   Unmap an HTTP route:
+      cf unmap-route APP_NAME DOMAIN [--hostname HOSTNAME] [--path PATH]
+
+   Unmap a TCP route:
+      cf unmap-route APP_NAME DOMAIN --port PORT
+
+EXAMPLES:
+   cf unmap-route my-app example.com                              # example.com
+   cf unmap-route my-app example.com --hostname myhost            # myhost.example.com
+   cf unmap-route my-app example.com --hostname myhost --path foo # myhost.example.com/foo
+   cf unmap-route my-app example.com --port 5000                  # example.com:5000
+
+OPTIONS:
+   --hostname, -n      Hostname used to identify the HTTP route
+   --path              Path used to identify the HTTP route
+   --port              Port used to identify the TCP route
+
+   e.g. cf unmap-route articulate cfapps-01.haas-66.pez.pivotal.io -n articulate-heartsickening-ele gance
+
+Q3) How does route mapping enable a blue-green deployment?
+
+Q4) What other steps are involved in a blue-green deployment?
+Step 1: Push an App
+Step 2: Update App and Push
+Step 3: Map Original Route to Green
+Step 4: Unmap Route to Blue
+Step 5: Remove Temporary Route to Green

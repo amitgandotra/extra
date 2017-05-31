@@ -1,0 +1,25 @@
+Q1) What is a manifest? What type of file is it? What is its purpose?
+Application manifests tell cf push what to do with applications. This includes everything from how many instances to create and how much memory to allocate to what services applications should use.
+A manifest can help you automate deployment, especially of multiple applications at once.
+By default, the cf push command deploys an application using a manifest.yml file in the current working directory.
+If your manifest is located elsewhere, use the -f option to provide the path to the filename.
+If you provide a path with no filename, the filename must be manifest.yml
+
+---
+applications:
+- name: nifty-gui
+  memory: 512M
+  host: nifty
+
+Q2) How do you create a manifest?
+Manifests are written in YAML
+
+Q3) If I specify a command in a manifest and on the command line what happens?
+cf push follows rules of precedence when setting attribute values:
+Manifests override most recent values, including defaults.
+Command line options override manifests.
+cf push -f ./some_directory/some_other_directory/alternate_manifest.yml
+
+Q4) What happens if I don’t specify a deployment option at all?
+When you push an application for the first time, Cloud Foundry applies default values to any attributes that you do not set in a manifest or cf push command line options.
+For example, cf push my-app with no manifest might deploy one instance of the app with one gigabyte of memory. In this case the default values for instances and memory are “1” and “1G”, respectively.
