@@ -24,7 +24,9 @@ provides info on how to run application
 Q4) How does a buildpack work? Are you aware of the scripts that run and how they might be written or modified?
 
 Q5) Can you tell what buildpack was used when an application was deployed?
-cf app articulate
-and look for
+cf app APP-NAME
+and look for buildpack
 
 Q6) Why might you customize a buildpack? In general, would you know what to do?
+cf push articulate -p ./articulate-0.0.1-SNAPSHOT.jar -b https://github.com/cloudfoundry/java-buildpack.git
+cf set-env articulate JBP_CONFIG_OPEN_JDK_JRE "{jre: { version: 1.8.0_45 }}"
