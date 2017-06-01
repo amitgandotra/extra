@@ -28,7 +28,7 @@ Events
 The Events view shows the following app events: Create, Update, Start, Stop, and Crash. You can change which events you see using the checkboxes in the upper right.
 
 Logs
-Logs displays application log data ingested from the firehose. See the Application Logging in Cloud Foundry topic for more information.
+Logs displays application log data ingested from the firehose.
 PCF Metrics lists all logs by default, and the histogram displays log frequency for the current time frame. You can refine the list and histogram with the following:
 
 Filter: Perform a keyword search. The histogram updates with blue bars based on the filter. Hover over a histogram bar to view the amount of logs for a specific time based on your filter.

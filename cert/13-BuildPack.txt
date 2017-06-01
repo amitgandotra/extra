@@ -12,14 +12,11 @@ Static file buildpack (for static web content)
 Binary buildpack
 
 Q3) How does Cloud Foundry know which buildpack to run?
-Detect Phase:
-Determine whether build pack can stage the application
+Detect Phase: Determine whether build pack can stage the application
 
-Compile Phase:
-Build the Droplet
+Compile Phase: Build the Droplet
 
-Release phase
-provides info on how to run application
+Release phase: Provides info on how to run application
 
 Q4) How does a buildpack work? Are you aware of the scripts that run and how they might be written or modified?
 
