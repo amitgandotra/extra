@@ -1,0 +1,22 @@
+Q1) What is a route service?
+https://docs.pivotal.io/pivotalcf/1-7/services/route-services.html
+Cloud Foundry application developers may wish to apply transformation or processing to requests before they reach an application. Common examples of use cases are authentication, rate limiting, and caching services. Route Services are a new kind of Marketplace Service that developers can use to apply various transformations to application requests by binding an application’s route to a service instance. Through integrations with service brokers and optionally with the Cloud Foundry routing tier, providers can offer these services to developers with a familiar automated, self-service, and on-demand user experience.
+
+Cloud Foundry supports three models for Route Services: fully-brokered services; static, brokered services; and user-provided services. In each case, you configure a route service to process traffic addressed to an app.
+
+
+Q2) Why might you create a route service? Can you think of some examples?
+Common examples of use cases are authentication, rate limiting, and caching services
+
+Q3) How would you create a route service?
+cf create-service BROKER_SERVICE_PLAN SERVICE_INSTANCE
+cf bind-route-service YOUR_APP_DOMAIN SERVICE_INSTANCE [--hostname HOSTNAME]
+
+Q4) How does a route service work?
+Binding a service instance to a route will associate the route_service_url with the route in the Cloud Foundry router. All requests for the route will be proxied to the URL specified by route_service_url.
+
+Once a route service completes its function, it is expected to forward the request to the route the original request was sent to. The Cloud Foundry router will include a header that provides the address of the route, as well as two headers that are used by the route itself to validate the request sent by the route service.
+
+Q5) How does a route service know where to send a request once it has performed its function?
+The X-CF-Forwarded-Url header contains the URL of the application route. The route service should forward the request to this URL.
+The route service should not strip off the X-CF-Proxy-Signature and X-CF-Proxy-Metadata, as the GoRouter relies on these headers to validate that the request and pass on to the application

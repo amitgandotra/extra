@@ -1,0 +1,33 @@
+Q1) What is a service broker?
+https://docs.cloudfoundry.org/services/overview.html
+Rest based API over HTTP
+Services are integrated with Cloud Foundry by implementing a documented API for which the cloud controller is the client; we call this the Service Broker API. This should not be confused with the cloud controller API, often used to refer to the version of Cloud Foundry itself; when one refers to “Cloud Foundry v2” they are referring to the version of the cloud controller API. The services API is versioned independently of the cloud controller API.
+
+Service Broker is the term we use to refer to a component of the service which implements the service broker API. This component was formerly referred to as a Service Gateway, however as traffic between applications and services does not flow through the broker we found the term gateway caused confusion. Although gateway still appears in old code, we use the term broker in conversation, in new code, and in documentation.
+
+Service brokers advertise a catalog of service offerings and service plans, as well as interpreting calls for provision (create), bind, unbind, and deprovision (delete). What a broker does with each call can vary between services; in general, ‘provision’ reserves resources on a service and 'bind’ delivers information to an application necessary for accessing the resource. We call the reserved resource a Service Instance. What a service instance represents can vary by service; it could be a single database on a multi-tenant server, a dedicated cluster, or even just an account on a web application.
+
+Q2) Why do we need service brokers?
+
+Q3) How do a service broker and the Cloud Controller interoperate?
+CLI send request to Cloud controller to "Create Service"
+Cloud Controller sends "Provision" request to Service Broker
+Service Broker Reserves the resource
+
+CLI send request to Cloud controller to "Bind Service"
+Cloud Controller sends "Bind Service" request to Service Broker
+Service Broker Obtain Credentials and give it to Cloud Controller
+Cloud Controller stores these credentials in CC_DB
+
+Q4) What is the purpose of each broker endpoint?
+Catalog Management -- The first endpoint that a broker must implement is the service catalog.
+
+Provisioning -- When the broker receives a provision request from the platform, it should take whatever action is necessary to create a new resource. What provisioning represents varies by service and plan, although there are several common use cases. For a MySQL service, provisioning could result in an empty dedicated database server running on its own VM or an empty schema on a shared database server. For non-data services, provisioning could just mean an account on an multi-tenant SaaS application.
+
+Binding -- If bindable:true is declared for a service or plan in the Catalog endpoint, broker clients may request generation of a service binding.
+
+Unbinding -- When a broker receives an unbind request from the marketplace, it should delete any resources associated with the binding. In the case where credentials were generated, this may result in requests to the service instance failing to authenticate.
+
+Deprovisioning -- When a broker receives a deprovision request from the marketplace, it should delete any resources it created during the provision. Usually this means that all resources are immediately reclaimed for future provisions.
+
+Q5) In general terms, how would you write your own service broker? How would you test it? How would you deploy it for everyone else to use?
