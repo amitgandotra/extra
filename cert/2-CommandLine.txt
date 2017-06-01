@@ -7,14 +7,9 @@ cf org ORG [--guid],  --guid      Retrieve and display the given org's guid.  Al
    delete-org                             Delete an org
    rename-org                             Rename an org
    spaces                                 List all spaces in an org
-   domains                                List domains in the target org
-   create-domain                          Create a domain in an org for later use
-   create-shared-domain                   Create a domain that can be used by all orgs (admin-only)
-   routes                                 List all routes in the current space or the current organization
    org-users                              Show org users by role
    set-org-role                           Assign an org role to a user
    unset-org-role                         Remove an org role from a user
-   set-quota                              Assign a quota to an org
 
 Q2) • View routes?
 cf routes [--orglevel] , --orglevel      List all the routes for all spaces of current organization

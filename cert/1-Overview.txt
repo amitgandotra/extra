@@ -1,19 +1,19 @@
 Q1) Do you understand Cloud Foundry concepts like spaces, organizations, routes, services, domains, users, quotas?
-PCF uses a role-based access control (RBAC) system to grant Elastic Runtime users permissions appropriate to their role within an org or a space. This topic describes how orgs and spaces work within a PCF deployment, and how different Elastic Runtime User roles operate within those contexts.
+PCF uses a role-based access control (RBAC) system to grant Elastic Runtime users permissions appropriate to their role within an org or a space.
 An org is a development account that an individual or multiple collaborators can own and use. All collaborators access an org with user accounts. Collaborators in an org share a resource quota plan, applications, services availability, and custom domains.
 A user account represents an individual person within the context of a PCF installation. A user can have different roles in different spaces within an org, governing what level and type of access they have within that space.
 Every application and service is scoped to a space. Each org contains at least one space. A space provides users with access to a shared location for application development, deployment, and maintenance. Each space role applies only to a particular space.
 
 A user can have one or more roles. The combination of these roles defines the user’s overall permissions in the org and within specific spaces in that org.
 
-1)Admin is a user role that has been assigned the cloud_controller.admin scope in UAA. An admin user has permissions on all orgs and spaces and can perform operational actions using the Cloud Controller API. To create an account with cloud_controller.admin scope for your installation, see Create an Admin User.
+1)Admin is a user role that has been assigned the cloud_controller.admin scope in UAA. An admin user has permissions on all orgs and spaces and can perform operational actions using the Cloud Controller API.
 2)Admin Read-Only is a user role that has been assigned the cloud_controller.admin_read_only scope in UAA. This role has read-only access to all Cloud Controller API resources.
 3)Global Auditor is a user role that has been assigned the cloud_controller.global_auditor scope in UAA. This role has read-only access to all Cloud Controller API resources except for secrets such as environment variables. The Global Auditor role cannot access those values.
 4)Org Managers are managers or other users who need to administer the org.
-Org Auditors view but cannot edit user information and org quota usage information.
-5)Space Managers are managers or other users who administer a space within an org.
-6)Space Developers are application developers or other users who manage applications and services in a space.
-7)Space Auditors view but cannot edit the space.
+5)Org Auditors view but cannot edit user information and org quota usage information.
+6)Space Managers are managers or other users who administer a space within an org.
+7)Space Developers are application developers or other users who manage applications and services in a space.
+8)Space Auditors view but cannot edit the space.
 
 Quota plans are named sets of memory, service, and instance usage quotas. For example, one quota plan might allow up to 10 services, 10 routes, and 2 GB of RAM, while another might offer 100 services, 100 routes, and 10 GB of RAM. Quota plans have user-friendly names, but are referenced in Cloud Foundry (CF) internal systems by unique GUIDs.
 
@@ -28,7 +28,7 @@ Routes belong to a space, so that developers can only map apps to a route in the
 Routes with the same domain and hostname but different paths can only be created in the same space. Private domains do not have this limitation.
 Elastic Runtime does not route requests for context paths to the root context of an application. Applications must serve requests on the context path.
 
-Domains indicate to a developer that requests for any route created from the domain will be routed to Elastic Runtime. This requires DNS to be configured out-of-band to resolve the domain name to the IP address of a load balancer configured to forward requests to the CF routers. For more information on configuring DNS, see the DNS for Domains section.
+Domains indicate to a developer that requests for any route created from the domain will be routed to Elastic Runtime. This requires DNS to be configured out-of-band to resolve the domain name to the IP address of a load balancer configured to forward requests to the CF routers.
 
 HTTP domains indicate to a developer that only requests using the HTTP protocol will be routed to applications mapped to routes created from the domain. Routing for HTTP domains is layer 7 and offers features like custom hostnames, sticky sessions, and TLS termination.
 
@@ -40,13 +40,14 @@ TCP domains indicate to a developer that requests over any TCP protocol, includi
 Service Broker is the term we use to refer to a component of the service which implements the service broker API. This component was formerly referred to as a Service Gateway, however as traffic between applications and services does not flow through the broker we found the term gateway caused confusion. Although gateway still appears in old code, we use the term broker in conversation, in new code, and in documentation.
 
 Q2) How do you login to Cloud Foundry?
-se cf login to log in to Cloud Foundry. The cf login command uses the following syntax to specify a target API endpoint, an org (organization), and a space: $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] .
+use "cf login" to log in to Cloud Foundry. The cf login command uses the following syntax to specify a target API endpoint, an org (organization), and a space:
+$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] .
 API_URL: This is your API endpoint, the URL of the Cloud Controller in your Cloud Foundry instance.
 USERNAME: Your username.
 PASSWORD: Your password. Use of the -p option is discouraged as it may record your password in your shell history.
 ORG: The org where you want to deploy your apps.
 SPACE: The space in the org where you want to deploy your apps.
-pon successful login, the cf CLI saves a config.json file containing your API endpoint, org, space values, and access token. If you change these settings, the config.json file is updated accordingly.
+upon successful login, the cf CLI saves a config.json file containing your API endpoint, org, space values, and access token. If you change these settings, the config.json file is updated accordingly.
 By default, config.json is located in your ~/.cf directory. The CF_HOME environment variable allows you to locate the config.json file wherever you like.
 
 Q3) How do you deploy an application? What are three activities involved?
@@ -102,7 +103,7 @@ The Diego cell unpacks, compiles, and runs a droplet on a container.
 
 Restaging your application stops your application and restages it, by compiling a new droplet and starting it.
 Restage your application if you have changed the environment in a way that affects your staging process, such as setting an environment variable that the buildpack consumes. The staging process has access to environment variables, so the environment can affect the contents of the droplet.
-Restaging your application compiles a new droplet from your application without updating your application source. If you need to update your application source, re-push your application by following the steps in the section above.
+Restaging your application compiles a new droplet from your application without updating your application source. If you need to update your application source, re-push your application.
 
 Q10) What is meant by ephemeral? What are the design implications for an application?
 Ephemeral disks are virtual disks that are created for the sole purpose of booting a virtual machine and should be thought of as temporary.
@@ -111,9 +112,7 @@ Do not use up volume quota: If you have more instance quota, you can always boot
 Are destroyed when the instance is terminated: This means if you want to temporarily delete an instance to free up some instance quota, you can’t without losing your data.
 
 Q11) What are the 12 Factor Design patterns? Could you list each one from memory?
-These 12 factors were used as guidelines to help steer development
-of new applications, as well as to create a scorecard with which to
-measure existing applications and their suitability for the cloud:
+These 12 factors were used as guidelines to help steer development of new applications, as well as to create a scorecard with which to measure existing applications and their suitability for the cloud:
 Codebase: One codebase tracked in revision control, many deploys
 Dependencies: Explicitly declare and isolate dependencies
 Configuration: Store configuration in the environment

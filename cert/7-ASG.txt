@@ -53,4 +53,4 @@ Space-scoped running ASG set	the running lifecycle for app and task instances in
 Typically, ASGs applied during the staging lifecycle are more permissive than the ASGs applied during the running lifecycle. This is because staging often requires access to different resources, such as dependencies.
 
 Q4)What is the difference between white and black listing? Which do you use when defining an ASG?
-whitelist means allow the traffic and blacklist means stop the trafffic. Use whitelist
+whitelist means allow the traffic and blacklist means stop the traffic. Use whitelist

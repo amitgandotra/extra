@@ -5,10 +5,10 @@ Pivotal Cloud Foundry does not persist logs. For long term storage of logs, drai
 
 Q2) How do you create one?
 Create a User Provided Service Instance that streams logs to Papertrail.
- cf create-user-provided-service articulate-log-drain -l syslog://<SYSLOG-DRAIN-URL>
+ cf create-user-provided-service LOG-DRAIN -l syslog://<SYSLOG-DRAIN-URL>
 
- Bind the articulate-log-drain service to the articulate application.
- cf bind-service articulate articulate-log-drain
+ Bind the log-drain service to the  application.
+ cf bind-service APP-NAME LOG-DRAIN 
 
 Q3) Why would you use it?
 Visualize your logs

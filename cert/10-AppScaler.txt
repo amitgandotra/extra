@@ -44,7 +44,7 @@ Click the clock icon next to Scheduled Limit Changes.
 Click + ADD NEW to add a new scheduled limit change or choose an existing entry to modify by clicking the edit icon next to an existing entry.
 To delete an existing entry, click the delete icon X next to an existing entry.
 Edit the following values:
-ate: Month, Day, Year and Time: Set the date and time of the change.
+Date: Month, Day, Year and Time: Set the date and time of the change.
 Repeat (optional): Set the day of the week for which you want to repeat the change.
 Min and Max: Set the allowable range within which App Autoscaler can change the instance count for an app.
 Click SAVE.

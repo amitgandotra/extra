@@ -28,7 +28,7 @@ OPTIONS:
    --path              Path for the HTTP route
    --port              Port for the TCP route
    --random-port       Create a random port for the TCP route
-e.g cf map-route articulate-v2 cfapps-01.haas-66.pez.pivotal.io -n articulate-heartsickening-el egance
+e.g cf map-route articulate-v2 cfapps-01.haas-66.pez.pivotal.io -n articulate-heartsickening-elegance
 
 ---------
 NAME:
@@ -52,7 +52,7 @@ OPTIONS:
    --path              Path used to identify the HTTP route
    --port              Port used to identify the TCP route
 
-   e.g. cf unmap-route articulate cfapps-01.haas-66.pez.pivotal.io -n articulate-heartsickening-ele gance
+   e.g. cf unmap-route articulate cfapps-01.haas-66.pez.pivotal.io -n articulate-heartsickening-elegance
 
 Q3) How does route mapping enable a blue-green deployment?
 

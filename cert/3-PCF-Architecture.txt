@@ -62,7 +62,7 @@ Forwards application logs, errors, and application and Diego metrics to the Logg
 Q5) • What is the System domain? And the application domain?
 
 Q6) • What is Cloud Foundry’s API endpoint for?
-he API endpoint, or target URL, for your Cloud Foundry instance is the URL of the Cloud Controller.
+The API endpoint, or target URL, for your Cloud Foundry instance is the URL of the Cloud Controller.
 Find your Cloud Controller API endpoint by consulting your cloud operator, from the Apps Manager, or from the command line.
 cf api
 API endpoint: https://api.example.com (API version: 2.55.0)
