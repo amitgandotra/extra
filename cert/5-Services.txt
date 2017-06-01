@@ -1,0 +1,90 @@
+
+Q1) What is a service? Can you name some examples?
+The Pivotal Cloud Foundry Services Marketplace provides users with on-demand provisioning of platform add-on services to enhance, secure, and manage applications. The catalog includes add-on solutions from Pivotal, our Partner, and the Cloud Foundry community providing a curated selection of add-on services from data persistence, caching, messaging to continuous integration, and much more. e.g. mysql, postgres
+
+Q2) What is the “marketplace”? Does it show all services?
+The Services Marketplace provides users of Pivotal Web Services (PWS) with self-service, on-demand provisioning of add-on services.
+All new service plans from standard private brokers are private by default. This means that when adding a new broker, or when adding a new plan to an existing broker’s catalog, service plans won’t immediately be available to end users. This lets an admin control which service plans are available to end users, and manage limited service availability.
+
+Q3) What is the difference between a managed and user-provided service?
+Pivotal-provided and third-party platform services are managed by PCF for efficient service-wide access control management, vulnerability patching, rolling upgrades, and automatic health management.
+
+User-Provided Services
+Securely connect to any external application or legacy database using a simple service interface. This enables secure service discovery, without the need to hardcode sensitive information, by passing server credentials and configuration as environment variables.
+
+Q4) How would you create a managed service?
+Create a Managed Service
+For BOSH to manage your service, you need to create a BOSH release for it.
+BOSH Releases explains how to do this, and how to use your already-existing Docker image as a shortcut.
+Once you have created a BOSH release for your managed service integration, you can work through the development steps to create your tile.
+
+Q5) How would you use a managed service?
+NAME:
+   create-service - Create a service instance
+USAGE:
+   cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
+
+NAME:
+      bind-service - Bind a service instance to an app
+USAGE:
+      cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]
+
+
+Q6) How would you create a user-provided service?
+Create a Brokered Service
+A brokered service requires a service broker, which publishes an API to the Cloud Controller.
+Service Brokers explains how to create one.
+Route Services explains how to create a route service, for use in the routing layer of PCF rather than by hosted PCF apps.
+Catalog explains how to design the part of your service broker API that publishes service plan information to the Services Marketplace.
+You can write your service broker in the language of your choice.
+Buildpacks explains how to create a language-specific buildpack that compiles and packages your service broker to run on PCF.
+Once you have the individual components for your brokered service integration, you can work through the development steps to create your tile.
+
+Q7) How would you use a user-provided service?
+cf create-user-provided-service SERVICE_INSTANCE [-p CREDENTIALS] [-l SYSLOG_DRAIN_URL] [-r ROUTE_SERVICE_URL]
+To use an external service that has no tile, they do the following from the the Cloud Foundry Command-Line Interface (cf CLI).
+Run cf create-user-provided-service MY-SERVICE-NAME -p CREDENTIALS (or cf cups) to create a service instance. The CREDENTIALS argument should be a valid JSON string that contains the URL and credentials necessary to connect to your externally-deployed service.
+Run cf bind-service to bind the service instance to their app.
+
+Q8) What is VCAPS_SERVICES? Why is it important?
+For bindable services Cloud Foundry will add connection details to the VCAP_SERVICES environment variable when you restart your application, after binding a service instance to your application.
+
+The results are returned as a JSON document that contains an object for each service for which one or more instances are bound to the application. The service object contains a child object for each service instance of that service that is bound to the application.
+VCAP_SERVICES=
+{
+  "elephantsql": [
+    {
+      "name": "elephantsql-c6c60",
+      "label": "elephantsql",
+      "tags": [
+        "postgres",
+        "postgresql",
+        "relational"
+      ],
+      "plan": "turtle",
+      "credentials": {
+        "uri": "postgres://exampleuser:examplepass@babar.elephantsql.com:5432/exampleuser"
+      }
+    }
+  ],
+  "sendgrid": [
+    {
+      "name": "mysendgrid",
+      "label": "sendgrid",
+      "tags": [
+        "smtp"
+      ],
+      "plan": "free",
+      "credentials": {
+        "hostname": "smtp.sendgrid.net",
+        "username": "QvsXMbJ3rK",
+        "password": "HCHMOYluTv"
+      }
+    }
+  ]
+}
+
+Q9) How do services interact with spaces?
+Every app and service in PCF is scoped to a space. This means that an app can use a service only if an instance of the service exists in the same space.
+Every application and service is scoped to a space. Each org contains at least one space. A space provides users with access to a shared location for application development, deployment, and maintenance. Each space role applies only to a particular space.
+You can create only one instance in a space. If you attempt to create more than one instance in a space, you receive an error response.

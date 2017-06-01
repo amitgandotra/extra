@@ -1,0 +1,39 @@
+Q1) How do you access application logs?
+logs                                   Tail or show recent logs for an app
+USAGE:
+   cf logs APP_NAME
+OPTIONS:
+   --recent      Dump recent logs instead of tailing
+
+Q2) What are the components of the Loggregator system?
+http://docs.pivotal.io/pivotalcf/1-9/loggregator/architecture.html
+Source -- Sources are logging agents that run on the Cloud Foundry components.
+Metron -- Metron agents are co-located with sources. They collect logs and forward them to the Doppler servers.
+Doppler -- Dopplers gather logs from the Metron agents, store them in temporary buffers, and forward them to the Traffic Controller or to third party syslog drains.
+Traffic Controller -- Handles client requests for logs. Gathers and collates messages from all Doppler servers, and provides external API and message translation (as needed for legacy APIs). Exposes the Firehose.
+Firehose -- The Firehose is a WebSocket endpoint which streams all the event data coming from an Elastic Runtime deployment. The data stream includes logs, HTTP events and container metrics from all applications, and metrics from all Elastic Runtime system components. Logs from system components such as Cloud Controller are not included in the firehose and are typically accessed via rsyslog configuration.
+Because the data coming from the Firehose may contain sensitive information, such as customer information in the application logs, the Firehose is only accessible by users who have the right permissions.
+Nozzles --Nozzles are programs which consume data from the Loggregator Firehose. Nozzles can be configured to select, buffer, and transform data, and forward it to other applications and services.
+
+Q3) How do you scale an application manually?
+NAME:
+   scale - Change or view the instance count, disk space limit, and memory limit for an app
+USAGE:
+   cf scale APP_NAME [-i INSTANCES] [-k DISK] [-m MEMORY] [-f]
+OPTIONS:
+   -f      Force restart of app without prompt
+   -i      Number of instances
+   -k      Disk limit (e.g. 256M, 1024M, 1G)
+   -m      Memory limit (e.g. 256M, 1024M, 1G)
+
+Q4) What are the four levels of high-availability provided by PCF?
+https://content.pivotal.io/blog/the-four-levels-of-ha-in-pivotal-cf
+Availability Zones.
+Health management for app instances.
+Monitored processes.
+Health management for virtual machines.
+
+Q5) What is the difference between scaling up and scaling out?
+Scaling up generally refers to purchasing and installing a more capable central control or piece of hardware. For example, when a project’s input/output demands start to push against the limits of an individual server, a scaling up approach would be to buy a more capable server with more processing capacity and RAM.
+
+By contrast, scaling out means linking together other lower-performance machines to collectively do the work of a much more advanced one. With these types of distributed setups, it's easy to handle a larger workload by running data through different system trajectories.

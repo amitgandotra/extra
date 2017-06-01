@@ -1,0 +1,37 @@
+Q1) What is “PCF Metrics”? What information does it provide?
+Pivotal Cloud Foundry (PCF) Metrics stores logs, metrics data, and event data from applications running on PCF for the past two weeks. It graphically presents this data to help operators and developers better understand the health and performance of their apps. PCF Metrics includes the following data views:
+
+Container metrics: CPU, memory, and disk usage percentages
+Network metrics: requests per second, HTTP errors per second, and request latency
+App events: create, update, start, stop, and crash
+Logs: searchable application logs
+For example, if you see a crash in the events view, you can zoom in on that time and view the corresponding container and network metrics. To help you troubleshoot, you can also see log output for that same time period.
+
+Q2)Do you understand how to use the metrics to spot a badly performing application?
+http://docs.pivotal.io/pcf-metrics/1-2/using.html
+For example: CPU or memory usage?
+PCF Metrics displays the following data. You can hover over each view to see data for a specific time.
+
+Container Metrics
+The Container Metrics view displays CPU, Memory, and Disk usage:
+A spike in CPU might point to a process that is computationally heavy. Scaling app instances can relieve the immediate pressure, but investigate the app to better understand and fix the root cause.
+A spike in Memory might mean a resource leak in the code. Scaling app memory can also relieve the immediate pressure, but look for and resolve the underlying issue so that it does not occur again.
+A spike in Disk might mean the app is writing logs to files instead of STDOUT, caching data to local disk, or serializing huge sessions to disk.
+
+Network Metrics
+The Network Metric view displays HTTP Requests & Errors and Latency:
+A spike in HTTP Requests means more users are using your app. Scaling app instances can reduce the higher latency that may result.
+A spike in HTTP Errors means one or more 5xx errors have occurred. Check your app logs for more information.
+A spike in Latency means your users are waiting longer to use your app. Scaling app instances can spread that workload over more resources and result in faster response times.
+
+Events
+The Events view shows the following app events: Create, Update, Start, Stop, and Crash. You can change which events you see using the checkboxes in the upper right.
+
+Logs
+Logs displays application log data ingested from the firehose. See the Application Logging in Cloud Foundry topic for more information.
+PCF Metrics lists all logs by default, and the histogram displays log frequency for the current time frame. You can refine the list and histogram with the following:
+
+Filter: Perform a keyword search. The histogram updates with blue bars based on the filter. Hover over a histogram bar to view the amount of logs for a specific time based on your filter.
+Highlight: Enter a term to highlight within your search. The histogram updates with yellow bars based on the results. Hover over a histogram bar to view the amount of logs for a specific time that contain the highlighted term.
+Sources: Choose which sources to display logs from.
+Order: Modify the order in which logs appear.

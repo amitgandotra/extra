@@ -1,0 +1,56 @@
+
+Q1) What is an application security group (ASG)? What does it do?
+Application Security Groups (ASGs) are a collections of egress rules that specify the protocols, ports, and IP address ranges where app or task instances send traffic. Because ASGs define allow rules, their order of evaluation is unimportant when multiple ASGs apply to the same space or deployment. The platform sets up rules to filter and log outbound network traffic from app and task instances. ASGs apply to both buildpack-based and Docker-based apps and tasks.
+
+When apps or tasks begin staging, they need traffic rules permissive enough to allow them to pull resources from the network. After an app or task is running, the traffic rules can be more restrictive and secure. To distinguish between these two security requirements, administrators can define one ASG for app and task staging, and another for app and task runtime.
+
+To provide granular control when securing a deployment, an administrator can assign ASGs to apply to all app and task instances for the entire deployment, or assign ASGs to spaces to apply only to apps and tasks in a particular space.
+
+ASGs can be complicated to configure correctly, especially when the specific IP addresses listed in a group change. To simplify securing a deployment while still permitting apps reach external services, operators can deploy the services into a subnet that is separate from their Cloud Foundry deployment. Then the operators can create ASGs for the apps that whitelist those service subnets, while denying access to any virtual machine (VM) hosting other apps.
+
+Q2) How do you define one?
+cf create-security-group SECURITY_GROUP PATH_TO_JSON_RULES_FILE
+
+Valid json file example:
+   [
+     {
+       "protocol": "tcp",
+       "destination": "10.0.11.0/24",
+       "ports": "80,443",
+       "description": "Allow http and https traffic from ZoneA"
+     }
+   ]
+
+security-group                         Show a single security group
+ security-groups                        List all security groups
+ create-security-group                  Create a security group
+ update-security-group                  Update a security group
+ delete-security-group                  Deletes a security group
+ bind-security-group                    Bind a security group to a particular space, or all existing spaces of an org
+ unbind-security-group                  Unbind a security group from a space
+ bind-staging-security-group            Bind a security group to the list of security groups to be used for staging applications
+ staging-security-groups                List security groups in the staging set for applications
+ unbind-staging-security-group          Unbind a security group from the set of security groups for staging applications
+ bind-running-security-group            Bind a security group to the list of security groups to be used for running applications
+ running-security-groups                List security groups in the set of security groups for running applications
+ unbind-running-security-group          Unbind a security group from the set of security groups for running applications
+
+Q3) What can an ASG apply to?
+Currently, four ASG sets exist in Cloud Foundry:
+
+Platform-wide staging ASG set, also called “default-staging”
+Platform-wide running ASG set, also called “default-running”
+Space-scoped staging ASG set
+Space-scoped running ASG set
+The following table indicates the differences between the four sets.
+
+When an ASG is bound to the…	the ASG rules are applied to…
+Platform-wide staging ASG set	the staging lifecycle for all apps and tasks.
+Platform-wide running ASG set	the running lifecycle for all app and task instances.
+Space-scoped staging ASG set	the staging lifecycle for apps and tasks in a particular space.
+Space-scoped running ASG set	the running lifecycle for app and task instances in a particular space.
+
+Typically, ASGs applied during the staging lifecycle are more permissive than the ASGs applied during the running lifecycle. This is because staging often requires access to different resources, such as dependencies.
+
+Q4)What is the difference between white and black listing? Which do you use when defining an ASG?
+whitelist means allow the traffic and blacklist means stop the trafffic. Use whitelist

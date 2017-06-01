@@ -1,0 +1,32 @@
+Q1) What is a buildpack? Why are they important?
+Buildpacks compile and package apps to run on PCF. This topic lists resources for using and deploying buildpacks with PCF apps, and for creating your own custom buildpack.
+
+Q2) Can you name some buildpacks?
+Java buildpack (by far the most complicated!)
+Go buildpack
+Ruby buildpack
+Node.js buildpack
+Python buildpack
+PHP buildpack
+Static file buildpack (for static web content)
+Binary buildpack
+
+Q3) How does Cloud Foundry know which buildpack to run?
+Detect Phase:
+Determine whether build pack can stage the application
+
+Compile Phase:
+Build the Droplet
+
+Release phase
+provides info on how to run application
+
+Q4) How does a buildpack work? Are you aware of the scripts that run and how they might be written or modified?
+
+Q5) Can you tell what buildpack was used when an application was deployed?
+cf app APP-NAME
+and look for buildpack
+
+Q6) Why might you customize a buildpack? In general, would you know what to do?
+cf push articulate -p ./articulate-0.0.1-SNAPSHOT.jar -b https://github.com/cloudfoundry/java-buildpack.git
+cf set-env articulate JBP_CONFIG_OPEN_JDK_JRE "{jre: { version: 1.8.0_45 }}"

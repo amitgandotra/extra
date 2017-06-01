@@ -1,0 +1,142 @@
+Q1) Do you understand Cloud Foundry concepts like spaces, organizations, routes, services, domains, users, quotas?
+PCF uses a role-based access control (RBAC) system to grant Elastic Runtime users permissions appropriate to their role within an org or a space. This topic describes how orgs and spaces work within a PCF deployment, and how different Elastic Runtime User roles operate within those contexts.
+An org is a development account that an individual or multiple collaborators can own and use. All collaborators access an org with user accounts. Collaborators in an org share a resource quota plan, applications, services availability, and custom domains.
+A user account represents an individual person within the context of a PCF installation. A user can have different roles in different spaces within an org, governing what level and type of access they have within that space.
+Every application and service is scoped to a space. Each org contains at least one space. A space provides users with access to a shared location for application development, deployment, and maintenance. Each space role applies only to a particular space.
+
+A user can have one or more roles. The combination of these roles defines the user’s overall permissions in the org and within specific spaces in that org.
+
+1)Admin is a user role that has been assigned the cloud_controller.admin scope in UAA. An admin user has permissions on all orgs and spaces and can perform operational actions using the Cloud Controller API. To create an account with cloud_controller.admin scope for your installation, see Create an Admin User.
+2)Admin Read-Only is a user role that has been assigned the cloud_controller.admin_read_only scope in UAA. This role has read-only access to all Cloud Controller API resources.
+3)Global Auditor is a user role that has been assigned the cloud_controller.global_auditor scope in UAA. This role has read-only access to all Cloud Controller API resources except for secrets such as environment variables. The Global Auditor role cannot access those values.
+4)Org Managers are managers or other users who need to administer the org.
+Org Auditors view but cannot edit user information and org quota usage information.
+5)Space Managers are managers or other users who administer a space within an org.
+6)Space Developers are application developers or other users who manage applications and services in a space.
+7)Space Auditors view but cannot edit the space.
+
+Quota plans are named sets of memory, service, and instance usage quotas. For example, one quota plan might allow up to 10 services, 10 routes, and 2 GB of RAM, while another might offer 100 services, 100 routes, and 10 GB of RAM. Quota plans have user-friendly names, but are referenced in Cloud Foundry (CF) internal systems by unique GUIDs.
+
+Quota plans are not directly associated with user accounts. Instead, every org has a list of available quota plans, and the account admin assigns a specific quota plan from the list to the org. Everyone in the org shares the quotas described by the plan. There is no limit to the number of defined quota plans an account can have, but only one plan can be assigned at a time.
+
+You must set a quota plan for an org, but you can choose whether to set a space quota.
+
+The Elastic Runtime router routes requests to applications by associating an app with an address, known as a route. This association is called a mapping: for example, the cf CLI command for associating an app and route is cf map-route.
+The router does not use a route to match requests until it is mapped to an app. In the above example, products.shared-domain.example.com may have been created as a route in Cloud Foundry, but until it is mapped to an app, requests for it receive a 404.
+The routing tier knows the location of instances for apps mapped to routes. Once the routing tier determines a route as the best match for a request, it makes a load-balancing calculation using the round-robin algorithm, and forwards the request to an instance of the mapped app.
+Routes belong to a space, so that developers can only map apps to a route in the same space. Routes are globally unique, so that developers in one space cannot create a route with the same URL as developers in another space, regardless of which orgs control these spaces.
+Routes with the same domain and hostname but different paths can only be created in the same space. Private domains do not have this limitation.
+Elastic Runtime does not route requests for context paths to the root context of an application. Applications must serve requests on the context path.
+
+Domains indicate to a developer that requests for any route created from the domain will be routed to Elastic Runtime. This requires DNS to be configured out-of-band to resolve the domain name to the IP address of a load balancer configured to forward requests to the CF routers. For more information on configuring DNS, see the DNS for Domains section.
+
+HTTP domains indicate to a developer that only requests using the HTTP protocol will be routed to applications mapped to routes created from the domain. Routing for HTTP domains is layer 7 and offers features like custom hostnames, sticky sessions, and TLS termination.
+
+TCP domains indicate to a developer that requests over any TCP protocol, including HTTP, will be routed to applications mapped to routes created from the domain. Routing for TCP domains is layer 4 and protocol agnostic, so many features available to HTTP routing are not available for TCP routing. TCP domains are defined as being associated with the TCP Router Group. The TCP Router Group defines the range of ports available to be reserved with TCP Routes. Currently, only Shared Domains can be TCP.
+ By default, Elastic Runtime only supports routing of HTTP requests to applications.
+
+ Services are integrated with Cloud Foundry by implementing a documented API for which the cloud controller is the client; we call this the Service Broker API. This should not be confused with the cloud controller API, often used to refer to the version of Cloud Foundry itself; when one refers to “Cloud Foundry v2” they are referring to the version of the cloud controller API. The services API is versioned independently of the cloud controller API.
+
+Service Broker is the term we use to refer to a component of the service which implements the service broker API. This component was formerly referred to as a Service Gateway, however as traffic between applications and services does not flow through the broker we found the term gateway caused confusion. Although gateway still appears in old code, we use the term broker in conversation, in new code, and in documentation.
+
+Q2) How do you login to Cloud Foundry?
+se cf login to log in to Cloud Foundry. The cf login command uses the following syntax to specify a target API endpoint, an org (organization), and a space: $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE] .
+API_URL: This is your API endpoint, the URL of the Cloud Controller in your Cloud Foundry instance.
+USERNAME: Your username.
+PASSWORD: Your password. Use of the -p option is discouraged as it may record your password in your shell history.
+ORG: The org where you want to deploy your apps.
+SPACE: The space in the org where you want to deploy your apps.
+pon successful login, the cf CLI saves a config.json file containing your API endpoint, org, space values, and access token. If you change these settings, the config.json file is updated accordingly.
+By default, config.json is located in your ~/.cf directory. The CF_HOME environment variable allows you to locate the config.json file wherever you like.
+
+Q3) How do you deploy an application? What are three activities involved?
+You deploy an app to Cloud Foundry by running a push command from a Cloud Foundry Command Line Interface (cf CLI).
+Between the time that you run push and the time that the app is available, Cloud Foundry performs the following tasks:
+1)Uploads and stores app files
+2)Examines and stores app metadata
+3)Creates a “droplet” (the Cloud Foundry unit of execution) for the app
+4) Selects an appropriate droplet execution agent (DEA) to run the droplet
+5) Starts the app
+The application deployment process involves uploading, staging, and starting the app in a container. Your app must successfully complete each of these phases within certain time limits. The default time limits for the phases are as follows:
+Upload: 15 minutes
+Stage: 15 minutes
+Start: 60 seconds
+
+Q4) Can you remember the steps Cloud Foundry goes through when deploying applications? What components are involved?
+https://docs.pivotal.io/pivotalcf/1-10/concepts/how-applications-are-staged.html
+1) At the command line, the developer enters the directory containing her application and uses the Cloud Foundry Command Line Interface (cf CLI) to issue a push command.
+2) The cf CLI tells the Cloud Controller to create a record for the application.
+3) The Cloud Controller stores the application metadata. Application metadata can include the app name, number of instances the user specified, and the buildpack, and other information about the application.
+4) Before uploading all the application files, the cf CLI issues a resource match request to the Cloud Controller to determine if any of the application files already exist in the resource cache. When the application files are uploaded, the cf CLI omits files that exist in the resource cache by supplying the result of the resource match request. The uploaded application files are combined with the files from the resource cache to create the application package.
+5) The Cloud Controller stores the application package in the blobstore.
+6) The cf CLI issues an app start command.
+7) The Cloud Controller issues a staging request to Diego, which then schedules a Cell to run the staging Task. The Task downloads buildpacks and if present, the app’s buildpack cache. It then uses the buildpack that is detected automatically or specified with the -b flag to build the droplet. The Task uses the instructions in the buildpack to stage the application.
+8) The Diego Cell streams the output of the staging process so the developer can troubleshoot application staging problems.
+9) The Task packages the resulting staged application into a tarball called a “droplet” and the Diego Cell stores it in the blobstore. The Task also uploads the buildpack cache to the blobstore for use the next time the application is staged.
+10) The Diego Bulletin Board System reports to the Cloud Controller that staging is complete. Staging must complete within 15 minutes or the staging is considered failed. Apps are given a minimum of 1GB memory to stage, even if the requested running memory is smaller.
+11) Diego schedules the application as a Long Running Process on one or more Diego Cells.
+12) The Diego Cells report the status of the application to the Cloud Controller.
+
+Q5) What is the difference between a public, private and hybrid cloud?
+A public cloud is basically the internet. Service providers use the internet to make resources, such as applications (also known as Software-as-a-service) and storage, available to the general public, or on a ‘public cloud.  Examples of public clouds include Amazon Elastic Compute Cloud (EC2), IBM’s Blue Cloud, Sun Cloud, Google AppEngine and Windows Azure Services Platform.
+Private clouds are data center architectures owned by a single company that provides flexibility, scalability, provisioning, automation and monitoring.  The goal of a private cloud is not sell “as-a-service” offerings to external customers but instead to gain the benefits of cloud architecture without giving up the control of maintaining your own data center.
+By using a Hybrid approach, companies can maintain control of an internally managed private cloud while relying on the public cloud as needed.  For instance during peak periods individual applications, or portions of applications can be migrated to the Public Cloud.  This will also be beneficial during predictable outages: hurricane warnings, scheduled maintenance windows, rolling brown/blackouts.
+
+Q6) What infrastructures does Cloud Foundry run on?
+Cloud Foundry (CF) has become the industry standard. It is an open source platform that you can deploy to run your apps on your own computing infrastructure, or deploy on an IaaS like AWS, vSphere, or OpenStack. You can also use a PaaS deployed by a commercial CF cloud provider.
+It allows a choice of IaaS layer to underpin it (Google Cloud Platform [GCP], Amazon Web Services [AWS], Microsoft Azure, VMware vSphere, OpenStack, etc.).
+
+Q7) What is BOSH? Why is it useful?
+BOSH is a project that unifies release engineering, deployment, and lifecycle management of small and large-scale cloud software. BOSH can provision and deploy software over hundreds of VMs. It also performs monitoring, failure recovery, and software updates with zero-to-minimal downtime.
+While BOSH was developed to deploy Cloud Foundry PaaS, it can also be used to deploy almost any other software (Hadoop, for instance). BOSH is particularly well-suited for large distributed systems. In addition BOSH supports multiple Infrastructure as a Service (IaaS) providers like VMware vSphere, Google Cloud Platform, Amazon Web Services EC2, and OpenStack. There is a Cloud Provider Interface (CPI) that enables users to extend BOSH to support additional IaaS providers such as Apache CloudStack and VirtualBox.
+
+Q8) What is staging? What does it do?
+http://docs.pivotal.io/pivotalcf/1-10/concepts/how-applications-are-staged.html
+
+Q9)Do you know the difference between restarting, restaging and redeploying and application? How does each of these affect the services, environment-variables available to an application?
+Restarting your application stops your application and restarts it with the already compiled droplet. A droplet is a tarball that includes:
+stack
+buildpack
+application source code
+The Diego cell unpacks, compiles, and runs a droplet on a container.
+
+Restaging your application stops your application and restages it, by compiling a new droplet and starting it.
+Restage your application if you have changed the environment in a way that affects your staging process, such as setting an environment variable that the buildpack consumes. The staging process has access to environment variables, so the environment can affect the contents of the droplet.
+Restaging your application compiles a new droplet from your application without updating your application source. If you need to update your application source, re-push your application by following the steps in the section above.
+
+Q10) What is meant by ephemeral? What are the design implications for an application?
+Ephemeral disks are virtual disks that are created for the sole purpose of booting a virtual machine and should be thought of as temporary.
+Ephemeral disks are useful if you aren’t worried about needing to duplicate an instance or destroy an instance and save the data. You can still mount a volume on an instance that is booted from an ephemeral disk and put any data that needs to be saved on it, instead of using the volume as the root of your OS.
+Do not use up volume quota: If you have more instance quota, you can always boot it from an ephemeral disk even if you don’t have any volume quota left.
+Are destroyed when the instance is terminated: This means if you want to temporarily delete an instance to free up some instance quota, you can’t without losing your data.
+
+Q11) What are the 12 Factor Design patterns? Could you list each one from memory?
+These 12 factors were used as guidelines to help steer development
+of new applications, as well as to create a scorecard with which to
+measure existing applications and their suitability for the cloud:
+Codebase: One codebase tracked in revision control, many deploys
+Dependencies: Explicitly declare and isolate dependencies
+Configuration: Store configuration in the environment
+Backing Services: Treat backing services as attached resources
+Build, release, run: Strictly separate build and run stages
+Processes: Execute the app as one or more stateless processes
+Port binding: Export services via port binding
+Concurrency: Scale out via the process model
+Disposability:Maximize robustness with fast startup and graceful shutdown
+Dev/prod parity:Keep development, staging, and production as similar aspossible
+Logs: Treat logs as event streams
+Admin processes: Run admin/management tasks as one-off processes
+
+Q12) Why does Cloud Foundry rely on environment-variables?
+Environment variables are the means by which the Cloud Foundry (CF) runtime communicates with a deployed application about its environment.
+Environments differ, so one should never rely on implicit existence of system-wide packages/libraries/etc.
+There are great tools to manage dependencies, such as Bundler and Maven, but nothing is as effective as building and packaging an app to contain the very same dependencies no matter what environment it is running in.
+It’s also recommended to build the workflow on tools that help to create reproducible environments. Consider using Docker for these purposes.
+Store config in the environment. Hardcoded config goes against maintaining multiple environments.
+
+Q13) Can you manage environment-variables manually? If so how?
+The user-provided variables set using the cf set-env command
+In addition, you can set environment variables in an application manifest file.
+
+Q14) Can you name two predefined environment-variables available to any application?
+The VCAP_APPLICATION and VCAP_SERVICES variables provided in the container environment
