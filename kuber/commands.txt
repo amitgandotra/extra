@@ -29,3 +29,5 @@ minikube start
  /Users/e069131/.minikube/machines/minikube/disk.vmdk
 
  kubectl create -f ./kubernetes-dashboard.yaml --insecure-skip-tls-verify=true
+
+https://kubernetes.io/docs/tasks/access-application-cluster/service-access-application-cluster/
