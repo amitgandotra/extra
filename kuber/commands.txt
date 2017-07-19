@@ -16,8 +16,22 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.20.0/minik
 minikube start
  kubectl run hello-world --replicas=2 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080  --insecure-skip-tls-verify=true
 
- kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
- kubectl expose deployment hello-minikube --type=NodePort
+ kubectl run hello-world --replicas=2 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+
+ kubectl get deployments hello-world
+
+kubectl describe deployments hello-world
+kubectl get replicasets
+kubectl describe replicasets
+ kubectl expose deployment hello-world --type=NodePort --name=example-service
+
+kubectl describe services example-service
+kubectl get pods --selector="run=load-balancer-example" --output=wide
+
+curl http://192.168.99.100:32681
+kubectl delete services example-service
+kubectl delete deployment hello-world
+
  kubectl get pod
  curl $(minikube service hello-minikube --url)
 
@@ -30,4 +44,11 @@ minikube start
 
  kubectl create -f ./kubernetes-dashboard.yaml --insecure-skip-tls-verify=true
 
+ kubectl get pods -o wide
+
 https://kubernetes.io/docs/tasks/access-application-cluster/service-access-application-cluster/
+http://blog.christianposta.com/microservices/spring-boot-microservice-development-on-kubernetes-the-easy-way/
+https://piotrminkowski.wordpress.com/2017/03/31/microservices-with-kubernetes-and-docker/
+https://sdqali.in/blog/2016/11/04/a-very-basic-introduction-to-deploying-a-java-application-using-kubernetes/
+https://thenewstack.io/tutorial-configuring-ultimate-development-environment-kubernetes/
+https://dzone.com/articles/deploying-spring-boot-microservices-with-container
