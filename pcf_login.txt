@@ -1,0 +1,803 @@
+C02JPR3UDKQ1:spring-music e069131$  cf login -a https://api.local.pcfdev.io --skip-ssl-validation -v
+API endpoint: https://api.local.pcfdev.io
+
+REQUEST: [2017-11-14T11:30:41-05:00]
+GET /v2/info HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Connection: close
+Content-Type: application/json
+User-Agent: go-cli 6.32.0+0191c33d9.2017-09-26 / darwin
+
+
+
+RESPONSE: [2017-11-14T11:30:41-05:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 594
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 11:30:39 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: a174832e-a167-4f46-5832-0d96cbb6f387
+X-Vcap-Request-Id: da54a10f-a9cf-4667-45ab-a4a2d201aef9::6dabb6c6-be88-4148-951e-d33ed7b163d5
+
+{"name":"pcfdev","build":"4af54097fef22734d857410ddfb89ee979087911","support":"pcfdev@pivotal.io","version":0,"description":"","authorization_endpoint":"https://login.local.pcfdev.io","token_endpoint":"[PRIVATE DATA HIDDEN]","min_cli_version":null,"min_recommended_cli_version":null,"api_version":"2.82.0","app_ssh_endpoint":"ssh.local.pcfdev.io:2222","app_ssh_host_key_fingerprint":"a6:d1:08:0b:b0:cb:9b:5f:c4:ba:44:2a:97:26:19:8a","app_ssh_oauth_client":"ssh-proxy","routing_endpoint":"https://api.local.pcfdev.io/routing","doppler_logging_endpoint":"wss://doppler.local.pcfdev.io:443"}
+
+REQUEST: [2017-11-14T11:30:41-05:00]
+GET /login HTTP/1.1
+Host: login.local.pcfdev.io
+Accept: application/json
+Connection: close
+Content-Type: application/json
+User-Agent: go-cli 6.32.0+0191c33d9.2017-09-26 / darwin
+
+
+
+RESPONSE: [2017-11-14T11:30:41-05:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 379
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Cache-Control: no-store
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 14 Nov 2017 11:30:39 GMT
+Expires: 0
+Pragma: no-cache
+Server: Apache-Coyote/1.1
+Set-Cookie: X-Uaa-Csrf=noagKs546mi1yGT1gNCeZ5; Expires=Thu, 14-Dec-2017 11:30:39 GMT; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: af50d950-bc39-4a40-6e67-2c22e4350de0
+X-Xss-Protection: 1; mode=block
+
+{"app":{"version":"4.2.0"},"links":{"uaa":"https://uaa.local.pcfdev.io","passwd":"/forgot_password","login":"https://login.local.pcfdev.io","register":"/create_account"},"zone_name":"uaa","entityID":"login.local.pcfdev.io","commit_id":"4bb775f","idpDefinitions":{},"prompts":{"username":["text","Email"],"password":["password","Password"]},"timestamp":"2017-05-18T05:55:36+0000"}
+
+Email> admin
+
+Password>
+Authenticating...
+
+REQUEST: [2017-11-14T11:30:48-05:00]
+POST /oauth/token HTTP/1.1
+Host: login.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+User-Agent: go-cli 6.32.0+0191c33d9.2017-09-26 / darwin
+
+grant_type=password&password=[PRIVATE DATA HIDDEN]&scope=&username=admin
+
+RESPONSE: [2017-11-14T11:30:48-05:00]
+HTTP/1.1 200 OK
+Connection: close
+Transfer-Encoding: chunked
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 14 Nov 2017 11:30:46 GMT
+Expires: 0
+Pragma: no-cache
+Server: Apache-Coyote/1.1
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: ded59a92-0984-449a-7e2c-2b677bf409b1
+X-Xss-Protection: 1; mode=block
+
+abc
+{"access_token":"[PRIVATE DATA HIDDEN]","token_type":"[PRIVATE DATA HIDDEN]","refresh_token":"[PRIVATE DATA HIDDEN]","expires_in":599,"scope":"network.write cloud_controller.admin routing.router_groups.read cloud_controller.write network.admin doppler.firehose openid routing.router_groups.write scim.read uaa.user cloud_controller.read password.write scim.write","jti":"d884b105206149459f5b7e6cb501f8c9"}
+0
+
+
+OK
+
+
+REQUEST: [2017-11-14T11:30:49-05:00]
+GET /v2/organizations?order-by=name HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Connection: close
+Content-Type: application/json
+User-Agent: go-cli 6.32.0+0191c33d9.2017-09-26 / darwin
+
+
+
+RESPONSE: [2017-11-14T11:30:49-05:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 3031
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 11:30:46 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 2dfe7c2a-6d5b-46fa-55f0-9d5b38f67ef1
+X-Vcap-Request-Id: 346cefcf-1f21-473f-5e6c-5f6a2d144bce::d2eb2889-e2b2-4a8b-a363-666b19ec25a3
+
+{
+  "total_results": 2,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "e1ed7f60-1371-495e-877b-c81f91f397b2",
+        "url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2",
+        "created_at": "2017-11-06T19:05:49Z",
+        "updated_at": "2017-11-06T19:05:49Z"
+      },
+      "entity": {
+        "name": "pcfdev-org",
+        "billing_enabled": false,
+        "quota_definition_guid": "665958a1-db85-4964-a58d-93d7f2298ab2",
+        "status": "active",
+        "default_isolation_segment_guid": null,
+        "quota_definition_url": "/v2/quota_definitions/665958a1-db85-4964-a58d-93d7f2298ab2",
+        "spaces_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/spaces",
+        "domains_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/domains",
+        "private_domains_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/private_domains",
+        "users_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/users",
+        "managers_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/managers",
+        "billing_managers_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/billing_managers",
+        "auditors_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/auditors",
+        "app_events_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/app_events",
+        "space_quota_definitions_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/space_quota_definitions"
+      }
+    },
+    {
+      "metadata": {
+        "guid": "ae20eaed-8534-4b1a-a95c-20aa1456bdbd",
+        "url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd",
+        "created_at": "2017-11-06T19:14:11Z",
+        "updated_at": "2017-11-14T10:18:35Z"
+      },
+      "entity": {
+        "name": "system",
+        "billing_enabled": false,
+        "quota_definition_guid": "0613d2d4-5c38-4424-bc34-7b9fee2e8156",
+        "status": "active",
+        "default_isolation_segment_guid": null,
+        "quota_definition_url": "/v2/quota_definitions/0613d2d4-5c38-4424-bc34-7b9fee2e8156",
+        "spaces_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/spaces",
+        "domains_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/domains",
+        "private_domains_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/private_domains",
+        "users_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/users",
+        "managers_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/managers",
+        "billing_managers_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/billing_managers",
+        "auditors_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/auditors",
+        "app_events_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/app_events",
+        "space_quota_definitions_url": "/v2/organizations/ae20eaed-8534-4b1a-a95c-20aa1456bdbd/space_quota_definitions"
+      }
+    }
+  ]
+}
+Select an org (or press enter to skip):
+1. pcfdev-org
+2. system
+
+Org> 1
+
+REQUEST: [2017-11-14T11:30:50-05:00]
+GET /v2/organizations?q=name%3Apcfdev-org&inline-relations-depth=1 HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Connection: close
+Content-Type: application/json
+User-Agent: go-cli 6.32.0+0191c33d9.2017-09-26 / darwin
+
+
+
+RESPONSE: [2017-11-14T11:30:50-05:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 8931
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 11:30:48 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 5ebd90e8-8f49-482d-4e08-448331b8d61c
+X-Vcap-Request-Id: 03210fce-5da2-40c0-6660-4e862124e841::cf47ae84-e17a-4ac2-96e3-5261dff4e885
+
+{
+  "total_results": 1,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "e1ed7f60-1371-495e-877b-c81f91f397b2",
+        "url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2",
+        "created_at": "2017-11-06T19:05:49Z",
+        "updated_at": "2017-11-06T19:05:49Z"
+      },
+      "entity": {
+        "name": "pcfdev-org",
+        "billing_enabled": false,
+        "quota_definition_guid": "665958a1-db85-4964-a58d-93d7f2298ab2",
+        "status": "active",
+        "default_isolation_segment_guid": null,
+        "quota_definition_url": "/v2/quota_definitions/665958a1-db85-4964-a58d-93d7f2298ab2",
+        "quota_definition": {
+          "metadata": {
+            "guid": "665958a1-db85-4964-a58d-93d7f2298ab2",
+            "url": "/v2/quota_definitions/665958a1-db85-4964-a58d-93d7f2298ab2",
+            "created_at": "2017-11-06T19:05:43Z",
+            "updated_at": "2017-11-06T19:13:34Z"
+          },
+          "entity": {
+            "name": "default",
+            "non_basic_services_allowed": true,
+            "total_services": -1,
+            "total_routes": 100,
+            "total_private_domains": -1,
+            "memory_limit": 102400,
+            "trial_db_allowed": false,
+            "instance_memory_limit": -1,
+            "app_instance_limit": -1,
+            "app_task_limit": -1,
+            "total_service_keys": -1,
+            "total_reserved_route_ports": -1
+          }
+        },
+        "spaces_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/spaces",
+        "spaces": [
+          {
+            "metadata": {
+              "guid": "422db549-1199-434f-91c2-9a053a39037b",
+              "url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+              "created_at": "2017-11-06T19:13:21Z",
+              "updated_at": "2017-11-06T19:13:21Z"
+            },
+            "entity": {
+              "name": "pcfdev-space",
+              "organization_guid": "e1ed7f60-1371-495e-877b-c81f91f397b2",
+              "space_quota_definition_guid": null,
+              "isolation_segment_guid": null,
+              "allow_ssh": true,
+              "organization_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2",
+              "developers_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/developers",
+              "managers_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/managers",
+              "auditors_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/auditors",
+              "apps_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/apps",
+              "routes_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/routes",
+              "domains_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/domains",
+              "service_instances_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/service_instances",
+              "app_events_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/app_events",
+              "events_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/events",
+              "security_groups_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/security_groups",
+              "staging_security_groups_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/staging_security_groups"
+            }
+          }
+        ],
+        "domains_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/domains",
+        "domains": [
+          {
+            "metadata": {
+              "guid": "62055720-e453-4f50-ad4b-f1bdfd881067",
+              "url": "/v2/shared_domains/62055720-e453-4f50-ad4b-f1bdfd881067",
+              "created_at": "2017-11-06T19:05:51Z",
+              "updated_at": "2017-11-14T10:10:53Z"
+            },
+            "entity": {
+              "name": "local.pcfdev.io",
+              "router_group_guid": null,
+              "router_group_type": null
+            }
+          },
+          {
+            "metadata": {
+              "guid": "46e05039-31d4-486b-a8fe-0aae9261a2b4",
+              "url": "/v2/shared_domains/46e05039-31d4-486b-a8fe-0aae9261a2b4",
+              "created_at": "2017-11-06T19:13:31Z",
+              "updated_at": "2017-11-06T19:13:31Z"
+            },
+            "entity": {
+              "name": "tcp.local.pcfdev.io",
+              "router_group_guid": "3a3c04c6-efd9-4065-6b5d-af060c250d61",
+              "router_group_type": null
+            }
+          }
+        ],
+        "private_domains_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/private_domains",
+        "private_domains": [
+
+        ],
+        "users_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/users",
+        "users": [
+          {
+            "metadata": {
+              "guid": "13256bd6-236d-4981-b5d0-ebb314a7ce6a",
+              "url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a",
+              "created_at": "2017-11-06T19:13:20Z",
+              "updated_at": "2017-11-06T19:13:20Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": true,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/spaces",
+              "organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/organizations",
+              "managed_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/audited_organizations",
+              "managed_spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/managed_spaces",
+              "audited_spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/audited_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "created_at": "2017-11-06T19:13:24Z",
+              "updated_at": "2017-11-06T19:13:24Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": false,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/spaces",
+              "organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/organizations",
+              "managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_organizations",
+              "managed_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_spaces",
+              "audited_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_spaces"
+            }
+          }
+        ],
+        "managers_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/managers",
+        "managers": [
+          {
+            "metadata": {
+              "guid": "f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "created_at": "2017-11-06T19:13:24Z",
+              "updated_at": "2017-11-06T19:13:24Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": false,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/spaces",
+              "organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/organizations",
+              "managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_organizations",
+              "managed_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_spaces",
+              "audited_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_spaces"
+            }
+          }
+        ],
+        "billing_managers_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/billing_managers",
+        "billing_managers": [
+
+        ],
+        "auditors_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/auditors",
+        "auditors": [
+
+        ],
+        "app_events_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/app_events",
+        "space_quota_definitions_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/space_quota_definitions",
+        "space_quota_definitions": [
+
+        ]
+      }
+    }
+  ]
+}
+Targeted org pcfdev-org
+
+
+REQUEST: [2017-11-14T11:30:50-05:00]
+GET /v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/spaces?order-by=name&inline-relations-depth=1 HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Connection: close
+Content-Type: application/json
+User-Agent: go-cli 6.32.0+0191c33d9.2017-09-26 / darwin
+
+
+
+RESPONSE: [2017-11-14T11:30:50-05:00]
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 16934
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 11:30:48 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: ea836470-a6c3-4f6c-4b3c-af28c056efc0
+X-Vcap-Request-Id: 1d924065-64df-4f45-4863-352cb6cdb2a7::575dcd9c-7abc-4ad8-a8ea-d69c9bf3eec5
+
+{
+  "total_results": 1,
+  "total_pages": 1,
+  "prev_url": null,
+  "next_url": null,
+  "resources": [
+    {
+      "metadata": {
+        "guid": "422db549-1199-434f-91c2-9a053a39037b",
+        "url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+        "created_at": "2017-11-06T19:13:21Z",
+        "updated_at": "2017-11-06T19:13:21Z"
+      },
+      "entity": {
+        "name": "pcfdev-space",
+        "organization_guid": "e1ed7f60-1371-495e-877b-c81f91f397b2",
+        "space_quota_definition_guid": null,
+        "isolation_segment_guid": null,
+        "allow_ssh": true,
+        "organization_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2",
+        "organization": {
+          "metadata": {
+            "guid": "e1ed7f60-1371-495e-877b-c81f91f397b2",
+            "url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2",
+            "created_at": "2017-11-06T19:05:49Z",
+            "updated_at": "2017-11-06T19:05:49Z"
+          },
+          "entity": {
+            "name": "pcfdev-org",
+            "billing_enabled": false,
+            "quota_definition_guid": "665958a1-db85-4964-a58d-93d7f2298ab2",
+            "status": "active",
+            "default_isolation_segment_guid": null,
+            "quota_definition_url": "/v2/quota_definitions/665958a1-db85-4964-a58d-93d7f2298ab2",
+            "spaces_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/spaces",
+            "domains_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/domains",
+            "private_domains_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/private_domains",
+            "users_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/users",
+            "managers_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/managers",
+            "billing_managers_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/billing_managers",
+            "auditors_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/auditors",
+            "app_events_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/app_events",
+            "space_quota_definitions_url": "/v2/organizations/e1ed7f60-1371-495e-877b-c81f91f397b2/space_quota_definitions"
+          }
+        },
+        "developers_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/developers",
+        "developers": [
+          {
+            "metadata": {
+              "guid": "13256bd6-236d-4981-b5d0-ebb314a7ce6a",
+              "url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a",
+              "created_at": "2017-11-06T19:13:20Z",
+              "updated_at": "2017-11-06T19:13:20Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": true,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/spaces",
+              "organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/organizations",
+              "managed_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/audited_organizations",
+              "managed_spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/managed_spaces",
+              "audited_spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/audited_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "created_at": "2017-11-06T19:13:24Z",
+              "updated_at": "2017-11-06T19:13:24Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": false,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/spaces",
+              "organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/organizations",
+              "managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_organizations",
+              "managed_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_spaces",
+              "audited_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_spaces"
+            }
+          }
+        ],
+        "managers_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/managers",
+        "managers": [
+          {
+            "metadata": {
+              "guid": "13256bd6-236d-4981-b5d0-ebb314a7ce6a",
+              "url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a",
+              "created_at": "2017-11-06T19:13:20Z",
+              "updated_at": "2017-11-06T19:13:20Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": true,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/spaces",
+              "organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/organizations",
+              "managed_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/audited_organizations",
+              "managed_spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/managed_spaces",
+              "audited_spaces_url": "/v2/users/13256bd6-236d-4981-b5d0-ebb314a7ce6a/audited_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "created_at": "2017-11-06T19:13:24Z",
+              "updated_at": "2017-11-06T19:13:24Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": false,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/spaces",
+              "organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/organizations",
+              "managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_organizations",
+              "managed_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_spaces",
+              "audited_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_spaces"
+            }
+          }
+        ],
+        "auditors_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/auditors",
+        "auditors": [
+          {
+            "metadata": {
+              "guid": "f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762",
+              "created_at": "2017-11-06T19:13:24Z",
+              "updated_at": "2017-11-06T19:13:24Z"
+            },
+            "entity": {
+              "admin": false,
+              "active": false,
+              "default_space_guid": null,
+              "spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/spaces",
+              "organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/organizations",
+              "managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_organizations",
+              "billing_managed_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/billing_managed_organizations",
+              "audited_organizations_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_organizations",
+              "managed_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/managed_spaces",
+              "audited_spaces_url": "/v2/users/f4bacf4c-9558-4757-b8ca-02642b0bc762/audited_spaces"
+            }
+          }
+        ],
+        "apps_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/apps",
+        "apps": [
+
+        ],
+        "routes_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/routes",
+        "routes": [
+
+        ],
+        "domains_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/domains",
+        "domains": [
+          {
+            "metadata": {
+              "guid": "62055720-e453-4f50-ad4b-f1bdfd881067",
+              "url": "/v2/shared_domains/62055720-e453-4f50-ad4b-f1bdfd881067",
+              "created_at": "2017-11-06T19:05:51Z",
+              "updated_at": "2017-11-14T10:10:53Z"
+            },
+            "entity": {
+              "name": "local.pcfdev.io",
+              "router_group_guid": null,
+              "router_group_type": null
+            }
+          },
+          {
+            "metadata": {
+              "guid": "46e05039-31d4-486b-a8fe-0aae9261a2b4",
+              "url": "/v2/shared_domains/46e05039-31d4-486b-a8fe-0aae9261a2b4",
+              "created_at": "2017-11-06T19:13:31Z",
+              "updated_at": "2017-11-06T19:13:31Z"
+            },
+            "entity": {
+              "name": "tcp.local.pcfdev.io",
+              "router_group_guid": "3a3c04c6-efd9-4065-6b5d-af060c250d61",
+              "router_group_type": null
+            }
+          }
+        ],
+        "service_instances_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/service_instances",
+        "service_instances": [
+
+        ],
+        "app_events_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/app_events",
+        "events_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/events",
+        "security_groups_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/security_groups",
+        "security_groups": [
+          {
+            "metadata": {
+              "guid": "c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b",
+              "url": "/v2/security_groups/c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b",
+              "created_at": "2017-11-06T19:05:46Z",
+              "updated_at": "2017-11-06T19:05:46Z"
+            },
+            "entity": {
+              "name": "public_networks",
+              "rules": [
+                {
+                  "destination": "0.0.0.0-9.255.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "11.0.0.0-169.253.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "169.255.0.0-172.15.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "172.32.0.0-192.167.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "192.169.0.0-255.255.255.255",
+                  "protocol": "all"
+                }
+              ],
+              "running_default": true,
+              "staging_default": true,
+              "spaces_url": "/v2/security_groups/c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b/spaces",
+              "staging_spaces_url": "/v2/security_groups/c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b/staging_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "a1fffe0f-5ccc-44a7-9413-cac6b2f8c493",
+              "url": "/v2/security_groups/a1fffe0f-5ccc-44a7-9413-cac6b2f8c493",
+              "created_at": "2017-11-06T19:05:47Z",
+              "updated_at": "2017-11-06T19:05:47Z"
+            },
+            "entity": {
+              "name": "dns",
+              "rules": [
+                {
+                  "destination": "0.0.0.0/0",
+                  "ports": "53",
+                  "protocol": "tcp"
+                },
+                {
+                  "destination": "0.0.0.0/0",
+                  "ports": "53",
+                  "protocol": "udp"
+                }
+              ],
+              "running_default": true,
+              "staging_default": true,
+              "spaces_url": "/v2/security_groups/a1fffe0f-5ccc-44a7-9413-cac6b2f8c493/spaces",
+              "staging_spaces_url": "/v2/security_groups/a1fffe0f-5ccc-44a7-9413-cac6b2f8c493/staging_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb",
+              "url": "/v2/security_groups/787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb",
+              "created_at": "2017-11-06T19:05:48Z",
+              "updated_at": "2017-11-06T19:05:48Z"
+            },
+            "entity": {
+              "name": "all_pcfdev",
+              "rules": [
+                {
+                  "destination": "0.0.0.0/0",
+                  "protocol": "all"
+                }
+              ],
+              "running_default": true,
+              "staging_default": true,
+              "spaces_url": "/v2/security_groups/787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb/spaces",
+              "staging_spaces_url": "/v2/security_groups/787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb/staging_spaces"
+            }
+          }
+        ],
+        "staging_security_groups_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b/staging_security_groups",
+        "staging_security_groups": [
+          {
+            "metadata": {
+              "guid": "c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b",
+              "url": "/v2/security_groups/c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b",
+              "created_at": "2017-11-06T19:05:46Z",
+              "updated_at": "2017-11-06T19:05:46Z"
+            },
+            "entity": {
+              "name": "public_networks",
+              "rules": [
+                {
+                  "destination": "0.0.0.0-9.255.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "11.0.0.0-169.253.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "169.255.0.0-172.15.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "172.32.0.0-192.167.255.255",
+                  "protocol": "all"
+                },
+                {
+                  "destination": "192.169.0.0-255.255.255.255",
+                  "protocol": "all"
+                }
+              ],
+              "running_default": true,
+              "staging_default": true,
+              "spaces_url": "/v2/security_groups/c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b/spaces",
+              "staging_spaces_url": "/v2/security_groups/c44eeae1-47e1-4e2a-8e0e-a5b2f57d6d9b/staging_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "a1fffe0f-5ccc-44a7-9413-cac6b2f8c493",
+              "url": "/v2/security_groups/a1fffe0f-5ccc-44a7-9413-cac6b2f8c493",
+              "created_at": "2017-11-06T19:05:47Z",
+              "updated_at": "2017-11-06T19:05:47Z"
+            },
+            "entity": {
+              "name": "dns",
+              "rules": [
+                {
+                  "destination": "0.0.0.0/0",
+                  "ports": "53",
+                  "protocol": "tcp"
+                },
+                {
+                  "destination": "0.0.0.0/0",
+                  "ports": "53",
+                  "protocol": "udp"
+                }
+              ],
+              "running_default": true,
+              "staging_default": true,
+              "spaces_url": "/v2/security_groups/a1fffe0f-5ccc-44a7-9413-cac6b2f8c493/spaces",
+              "staging_spaces_url": "/v2/security_groups/a1fffe0f-5ccc-44a7-9413-cac6b2f8c493/staging_spaces"
+            }
+          },
+          {
+            "metadata": {
+              "guid": "787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb",
+              "url": "/v2/security_groups/787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb",
+              "created_at": "2017-11-06T19:05:48Z",
+              "updated_at": "2017-11-06T19:05:48Z"
+            },
+            "entity": {
+              "name": "all_pcfdev",
+              "rules": [
+                {
+                  "destination": "0.0.0.0/0",
+                  "protocol": "all"
+                }
+              ],
+              "running_default": true,
+              "staging_default": true,
+              "spaces_url": "/v2/security_groups/787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb/spaces",
+              "staging_spaces_url": "/v2/security_groups/787bcaf2-eda2-4e8f-9c3e-4962e0dcd0bb/staging_spaces"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+Targeted space pcfdev-space
+
+
+
+API endpoint:   https://api.local.pcfdev.io (API version: 2.82.0)
+User:           admin
+Org:            pcfdev-org
+Space:          pcfdev-space

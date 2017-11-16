@@ -1,0 +1,1453 @@
+C02JPR3UDKQ1:spring-music e069131$ cf restage spring-music -v
+REQUEST: [2017-11-14T14:42:40-05:00]
+GET /v2/info HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 200 OK
+Content-Length: 594
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:38 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: dc1f204d-5e58-4ce7-4142-d7699619d612
+X-Vcap-Request-Id: 618d436b-cb4b-4622-540d-86cacf36a130::ee4f2197-5909-415d-b0df-c8d8bccfc2e2
+{
+  "api_version": "2.82.0",
+  "app_ssh_endpoint": "ssh.local.pcfdev.io:2222",
+  "app_ssh_host_key_fingerprint": "a6:d1:08:0b:b0:cb:9b:5f:c4:ba:44:2a:97:26:19:8a",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.local.pcfdev.io",
+  "build": "4af54097fef22734d857410ddfb89ee979087911",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.local.pcfdev.io:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "pcfdev",
+  "routing_endpoint": "https://api.local.pcfdev.io/routing",
+  "support": "pcfdev@pivotal.io",
+  "token_endpoint": "https://uaa.local.pcfdev.io",
+  "version": 0
+}
+
+
+REQUEST: [2017-11-14T14:42:40-05:00]
+GET /login HTTP/1.1
+Host: login.local.pcfdev.io
+Accept: application/json
+Connection: close
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 200 OK
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 379
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 14 Nov 2017 14:42:38 GMT
+Expires: 0
+Pragma: no-cache
+Server: Apache-Coyote/1.1
+Set-Cookie: X-Uaa-Csrf=SvVA6lMbMOwysO30zngl53; Expires=Thu, 14-Dec-2017 14:42:38 GMT; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: f3eef20b-a5c5-456b-5f72-737fdee6d8e2
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.2.0"
+  },
+  "commit_id": "4bb775f",
+  "entityID": "login.local.pcfdev.io",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.local.pcfdev.io",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.local.pcfdev.io"
+  },
+  "prompts": {
+    "password": [
+      "password",
+      "Password"
+    ],
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2017-05-18T05:55:36+0000",
+  "zone_name": "uaa"
+}
+
+
+Restaging app spring-music in org pcfdev-org / space pcfdev-space as admin...
+REQUEST: [2017-11-14T14:42:40-05:00]
+GET /v2/apps?q=name%3Aspring-music&q=space_guid%3A422db549-1199-434f-91c2-9a053a39037b HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 200 OK
+Content-Length: 3077
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:38 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 0a548433-80a8-4b1a-622f-c3c24555bdaa
+X-Vcap-Request-Id: e4789ab4-7a58-4a30-6cb4-c67a67aaaa73::3eaf85ab-ecc3-4749-93b6-f96b447b1cf0
+{
+  "next_url": null,
+  "prev_url": null,
+  "resources": [
+    {
+      "entity": {
+        "buildpack": null,
+        "command": null,
+        "console": false,
+        "debug": null,
+        "detected_buildpack": "container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.13-offline-https://github.com/cloudfoundry/java-buildpack.git#03b493f java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...",
+        "detected_buildpack_guid": "f488fee2-1452-4b85-b088-241d6353be3d",
+        "detected_start_command": "CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS=\"-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password\" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher",
+        "diego": true,
+        "disk_quota": 512,
+        "docker_credentials": {
+          "password": null,
+          "username": null
+        },
+        "docker_image": null,
+        "enable_ssh": true,
+        "environment_json": {},
+        "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+        "health_check_http_endpoint": null,
+        "health_check_timeout": null,
+        "health_check_type": "port",
+        "instances": 1,
+        "memory": 1024,
+        "name": "spring-music",
+        "package_state": "STAGED",
+        "package_updated_at": "2017-11-14T12:32:55Z",
+        "ports": [
+          8080
+        ],
+        "production": false,
+        "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+        "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+        "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+        "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+        "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+        "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+        "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+        "staging_failed_description": null,
+        "staging_failed_reason": null,
+        "staging_task_id": "4a7ee5d5-b71e-40a7-9fdc-8bb3dfb4477f",
+        "state": "STARTED",
+        "version": "4ee63dda-3693-4df9-9634-3fdcbc1e01f1"
+      },
+      "metadata": {
+        "created_at": "2017-11-14T12:01:40Z",
+        "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+        "updated_at": "2017-11-14T14:40:00Z",
+        "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+      }
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+
+
+
+Staging app and tracing logs...
+REQUEST: [2017-11-14T14:42:40-05:00]
+POST /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/restage HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+REQUEST: [2017-11-14T14:42:40-05:00]
+POST /oauth/token HTTP/1.1
+Host: login.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+[PRIVATE DATA HIDDEN]
+
+RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 200 OK
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 14 Nov 2017 14:42:38 GMT
+Expires: 0
+Pragma: no-cache
+Server: Apache-Coyote/1.1
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: 7a7e774c-6c01-4f3e-6461-c23569f21d1c
+X-Xss-Protection: 1; mode=block
+{
+  "access_token": "[PRIVATE DATA HIDDEN]",
+  "expires_in": 599,
+  "jti": "c4865777f2684bf6b29edb63b898489a",
+  "refresh_token": "[PRIVATE DATA HIDDEN]",
+  "scope": "openid routing.router_groups.write network.write scim.read cloud_controller.admin uaa.user routing.router_groups.read cloud_controller.read password.write cloud_controller.write network.admin doppler.firehose scim.write",
+  "token_type": "[PRIVATE DATA HIDDEN]"
+}
+
+
+WEBSOCKET REQUEST: [2017-11-14T14:42:40-05:00]
+GET /apps/2d2a0431-38a9-4b27-9190-74b4de006cee/stream HTTP/1.1
+Host: wss://doppler.local.pcfdev.io:443
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Key: [HIDDEN]
+Origin: wss://doppler.local.pcfdev.io:443
+Authorization: [PRIVATE DATA HIDDEN]
+
+
+WEBSOCKET RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-Websocket-Accept: mXHX1UQ0cB2NNHSvYawFBf4NclE=
+
+
+   Downloading python_buildpack...
+   Downloading java_buildpack...
+   Downloading dotnet-core_buildpack...
+   Downloading php_buildpack...
+RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 201 Created
+Content-Length: 1280
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:38 GMT
+Location: /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 16812582-8695-47fc-5627-4de613c7da93
+X-Vcap-Request-Id: 670885bc-dc0e-45ad-76a7-c0718e364717::23b72b9a-4e9e-488c-a2f7-857cb60bd9bc
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+REQUEST: [2017-11-14T14:42:40-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+   Downloading nodejs_buildpack...
+   Downloaded dotnet-core_buildpack
+   Downloaded java_buildpack
+   Downloading staticfile_buildpack...
+   Downloading ruby_buildpack...
+   Downloaded python_buildpack
+   Downloaded php_buildpack
+   Downloading binary_buildpack...
+   Downloading go_buildpack...
+   Downloaded go_buildpack
+   Downloaded ruby_buildpack
+   Downloaded staticfile_buildpack
+   Creating container
+   Downloaded binary_buildpack
+   Downloaded nodejs_buildpack
+RESPONSE: [2017-11-14T14:42:40-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:38 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 60a285e0-cee3-4d9d-7665-58496f742989
+X-Vcap-Request-Id: 32f18e9a-5baa-46ce-6664-c5d7b133770c::39c198bf-6905-41a4-a975-9df110085a8f
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+   Downloading app package...
+   Successfully created container
+   Downloaded app package (42.3M)
+   Downloading build artifacts cache...
+   Downloaded build artifacts cache (108B)
+   Staging...
+REQUEST: [2017-11-14T14:42:43-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:43-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:41 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 9342eb11-9190-47b7-6820-f664a497b9ce
+X-Vcap-Request-Id: 7b39f2b8-80aa-48ed-76cc-d7e160085b1b::6b4ce038-1457-4437-a9a0-884b7779d7c1
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+   -----> Java Buildpack Version: v3.13 (offline) | https://github.com/cloudfoundry/java-buildpack.git#03b493f
+REQUEST: [2017-11-14T14:42:46-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:46-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:44 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 12dab4c6-3f8d-47e2-5f9b-cbe867603f9a
+X-Vcap-Request-Id: 7e0df5a2-a0fa-4887-76d3-4f3a429a3ae6::2e4542ec-9242-4094-bacd-8940f5d29749
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+   -----> Downloading Open Jdk JRE 1.8.0_121 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_121.tar.gz (found in cache)
+          Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.1s)
+   -----> Downloading Open JDK Like Memory Calculator 2.0.2_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-2.0.2_RELEASE.tar.gz (found in cache)
+          Memory Settings: -Xss349K -Xmx681574K -Xms681574K -XX:MetaspaceSize=104857K -XX:MaxMetaspaceSize=104857K
+   -----> Downloading Container Certificate Trust Store 2.0.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-certificate-trust-store/container-certificate-trust-store-2.0.0_RELEASE.jar (found in cache)
+          Adding certificates to .java-buildpack/container_certificate_trust_store/truststore.jks (0.4s)
+   -----> Downloading Spring Auto Reconfiguration 1.10.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-1.10.0_RELEASE.jar (found in cache)
+REQUEST: [2017-11-14T14:42:49-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:49-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:47 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: f4adceb0-328f-4a41-531b-ca54100ab757
+X-Vcap-Request-Id: e4e32a2f-6fc1-4ea4-721b-dcc87a510cf3::d39207ce-5b6c-4221-bb10-523d1ed98567
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+REQUEST: [2017-11-14T14:42:52-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:52-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:50 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: bc2c1acc-57ac-48fb-4e7e-ba4f764792c7
+X-Vcap-Request-Id: b6e03bb9-7457-48cc-75bd-4fc5051e71bc::bb4456d0-b7bb-491c-97fa-a3d33b1cf048
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+REQUEST: [2017-11-14T14:42:55-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:55-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:54 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 0bb786e7-58f3-4319-7527-c6f57f6547cd
+X-Vcap-Request-Id: 4198acb4-03c2-4c77-5fd3-a0d32ef51f99::5ab8487c-d709-462f-88ba-528bf1cddec8
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+   Exit status 0
+   Staging complete
+   Uploading droplet, build artifacts cache...
+   Uploading build artifacts cache...
+   Uploading droplet...
+   Uploaded build artifacts cache (108B)
+REQUEST: [2017-11-14T14:42:58-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:42:58-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:42:57 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 68dfe992-5b60-4ef5-7065-5a436c082938
+X-Vcap-Request-Id: 8b2460de-6976-4982-6fdd-b5a2a64c61e6::3b2281ee-7bd6-4291-a2ca-185fa7a5ca99
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:01-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:02-05:00]
+HTTP/1.1 200 OK
+Content-Length: 1748
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:00 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: a3ec748b-8a69-4292-6b3a-3a7bbc19aa20
+X-Vcap-Request-Id: 37da06c2-c09c-44f6-6d6c-97514e68b988::37c47cf5-44f2-46f3-af90-2d6c5a3d3bcc
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": null,
+    "detected_buildpack_guid": null,
+    "detected_start_command": "",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "PENDING",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+   Uploaded droplet (87.7M)
+   Uploading complete
+   Destroying container
+   Successfully destroyed container
+REQUEST: [2017-11-14T14:43:05-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:05-05:00]
+HTTP/1.1 200 OK
+Content-Length: 2762
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:03 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 24203055-ae64-420c-54ee-3602d632964a
+X-Vcap-Request-Id: b68e684e-a108-4c7c-7da8-a8dc5c1c0cbc::85b8df35-24ed-4a83-9c56-2703aefd16a4
+{
+  "entity": {
+    "buildpack": null,
+    "command": null,
+    "console": false,
+    "debug": null,
+    "detected_buildpack": "container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.13-offline-https://github.com/cloudfoundry/java-buildpack.git#03b493f java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...",
+    "detected_buildpack_guid": "f488fee2-1452-4b85-b088-241d6353be3d",
+    "detected_start_command": "CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS=\"-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password\" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher",
+    "diego": true,
+    "disk_quota": 512,
+    "docker_credentials": {
+      "password": null,
+      "username": null
+    },
+    "docker_image": null,
+    "enable_ssh": true,
+    "environment_json": {},
+    "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+    "health_check_http_endpoint": null,
+    "health_check_timeout": null,
+    "health_check_type": "port",
+    "instances": 1,
+    "memory": 1024,
+    "name": "spring-music",
+    "package_state": "STAGED",
+    "package_updated_at": "2017-11-14T12:32:55Z",
+    "ports": [
+      8080
+    ],
+    "production": false,
+    "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+    "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+    "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+    "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+    "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+    "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "staging_failed_description": null,
+    "staging_failed_reason": null,
+    "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+    "state": "STARTED",
+    "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+  },
+  "metadata": {
+    "created_at": "2017-11-14T12:01:40Z",
+    "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+    "updated_at": "2017-11-14T14:42:38Z",
+    "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+  }
+}
+
+
+
+Waiting for app to start...
+REQUEST: [2017-11-14T14:43:05-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:05-05:00]
+HTTP/1.1 200 OK
+Content-Length: 56
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:03 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 3275c9bf-b954-458b-7720-191fa2b0746a
+X-Vcap-Request-Id: 3bb68347-0bd2-4407-76cb-67783d0706aa::1401a03b-96af-426e-b011-5ac0e89279f8
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 2
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:08-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:08-05:00]
+HTTP/1.1 200 OK
+Content-Length: 56
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:06 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 9e96c2d0-b3a7-4759-759d-2d51e0a3a360
+X-Vcap-Request-Id: f930716b-2cf5-44bf-697d-9aabecdb06fd::3d820f65-d650-4b86-b858-835825bf4f24
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 5
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:11-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:11-05:00]
+HTTP/1.1 200 OK
+Content-Length: 56
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:10 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: b71d2c29-0e7c-484f-561b-918a9f4e790f
+X-Vcap-Request-Id: b74c0b96-62b0-4a3a-57f4-8a3afb15a646::ea9e4bdf-711a-4a61-aff8-c71a41342470
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 8
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:14-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:14-05:00]
+HTTP/1.1 200 OK
+Content-Length: 57
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:13 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: cd465a0e-5ea9-4a33-7210-b99b253ccf92
+X-Vcap-Request-Id: 49d0cc09-2580-4f41-43e9-dff6a514c184::793e149d-5c3c-48b4-8eea-11cc2f379fba
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 11
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:17-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:17-05:00]
+HTTP/1.1 200 OK
+Content-Length: 57
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:16 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 51175ac9-6640-48af-639a-adae77641f79
+X-Vcap-Request-Id: dd8c7069-7961-47dc-6bad-ed91befb2910::74ed5286-cdc0-409d-9ea6-1a5a7cf5c224
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 14
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:20-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:20-05:00]
+HTTP/1.1 200 OK
+Content-Length: 57
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:19 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 0628b1e7-da65-4dd4-5bcb-91256b98cb9e
+X-Vcap-Request-Id: 058908e2-e812-4840-4b01-7cb42c70601c::672aac94-05e6-4c11-8cc9-4f51a1553315
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 17
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:23-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:23-05:00]
+HTTP/1.1 200 OK
+Content-Length: 57
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:22 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 876948c4-ad1c-40af-79c5-7e27a116d1e0
+X-Vcap-Request-Id: 1c8d9a9f-5b69-40a1-5053-60428272b7ba::71d47bd8-b100-4396-8611-277a8c4c8a34
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 20
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:26-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:26-05:00]
+HTTP/1.1 200 OK
+Content-Length: 57
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:25 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 72bf3248-e352-467a-75b9-8e4a9024ad65
+X-Vcap-Request-Id: dec05b05-c59c-4819-61fb-cadd0c125ad1::19c0614e-8c0a-49db-8b76-c4558f3e1cb9
+{
+  "0": {
+    "since": 1510670581,
+    "state": "STARTING",
+    "uptime": 23
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:29-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:29-05:00]
+HTTP/1.1 200 OK
+Content-Length: 55
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 3d13684c-12c9-40e9-47b3-96b3ec86ea9d
+X-Vcap-Request-Id: 4c60ae7e-5e59-448f-60bc-8b64d74bdb90::8968687e-6dc4-4b51-9582-8ec8f149d2fe
+{
+  "0": {
+    "since": 1510670607,
+    "state": "RUNNING",
+    "uptime": 1
+  }
+}
+
+
+
+REQUEST: [2017-11-14T14:43:29-05:00]
+GET /v2/apps?q=name%3Aspring-music&q=space_guid%3A422db549-1199-434f-91c2-9a053a39037b HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:30-05:00]
+HTTP/1.1 200 OK
+Content-Length: 3077
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 91ef9836-b6ac-477a-48be-f1b65233cf92
+X-Vcap-Request-Id: 3456fc32-e3be-48ec-5bd5-b350acea4cde::316ce3d6-0a38-48f5-93b3-6153168188b4
+{
+  "next_url": null,
+  "prev_url": null,
+  "resources": [
+    {
+      "entity": {
+        "buildpack": null,
+        "command": null,
+        "console": false,
+        "debug": null,
+        "detected_buildpack": "container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.13-offline-https://github.com/cloudfoundry/java-buildpack.git#03b493f java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...",
+        "detected_buildpack_guid": "f488fee2-1452-4b85-b088-241d6353be3d",
+        "detected_start_command": "CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS=\"-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password\" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher",
+        "diego": true,
+        "disk_quota": 512,
+        "docker_credentials": {
+          "password": null,
+          "username": null
+        },
+        "docker_image": null,
+        "enable_ssh": true,
+        "environment_json": {},
+        "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+        "health_check_http_endpoint": null,
+        "health_check_timeout": null,
+        "health_check_type": "port",
+        "instances": 1,
+        "memory": 1024,
+        "name": "spring-music",
+        "package_state": "STAGED",
+        "package_updated_at": "2017-11-14T12:32:55Z",
+        "ports": [
+          8080
+        ],
+        "production": false,
+        "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+        "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+        "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+        "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+        "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+        "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+        "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+        "staging_failed_description": null,
+        "staging_failed_reason": null,
+        "staging_task_id": "69ccda9d-3802-4aba-9418-a81c89c0f4a9",
+        "state": "STARTED",
+        "version": "8cfd8b56-a9ad-425b-8e9a-6c8de5bedea8"
+      },
+      "metadata": {
+        "created_at": "2017-11-14T12:01:40Z",
+        "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+        "updated_at": "2017-11-14T14:42:38Z",
+        "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+      }
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+
+
+REQUEST: [2017-11-14T14:43:30-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/stats HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:30-05:00]
+HTTP/1.1 200 OK
+Content-Length: 311
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: f71308f0-4e86-4600-4849-bf2e40ba676f
+X-Vcap-Request-Id: 51777ac0-de38-47a3-7b9c-c7c34d934e2c::840e873c-a297-4e26-ba49-8faa5d2a22dd
+{
+  "0": {
+    "state": "RUNNING",
+    "stats": {
+      "disk_quota": 536870912,
+      "fds_quota": 16384,
+      "host": "10.0.2.15",
+      "mem_quota": 1073741824,
+      "name": "spring-music",
+      "port": 61004,
+      "uptime": 1,
+      "uris": [
+        "spring-music.local.pcfdev.io"
+      ],
+      "usage": {
+        "cpu": 2.510201967071229,
+        "disk": 178323456,
+        "mem": 512548864,
+        "time": "2017-11-14T14:43:28.329749879Z"
+      }
+    }
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:30-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/instances HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:30-05:00]
+HTTP/1.1 200 OK
+Content-Length: 55
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 0d9f806b-17a0-4972-5f6c-dc9ebfe1e8a5
+X-Vcap-Request-Id: ca2688fc-9fea-4002-6258-5136590c61f0::ac4b2501-278e-48f8-a460-012667b77b3c
+{
+  "0": {
+    "since": 1510670607,
+    "state": "RUNNING",
+    "uptime": 1
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:30-05:00]
+GET /v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:30-05:00]
+HTTP/1.1 200 OK
+Content-Length: 948
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: d13bcfe9-bb3f-419b-7e97-511bc8defa78
+X-Vcap-Request-Id: 72ee7770-dc96-4ded-6226-b3bac1aa5a3f::0afce469-4c33-40ef-a7a3-bf2a4a51431f
+{
+  "next_url": null,
+  "prev_url": null,
+  "resources": [
+    {
+      "entity": {
+        "apps_url": "/v2/routes/ad4497b2-8a98-4ba0-a52e-aba34f54cad4/apps",
+        "domain_guid": "62055720-e453-4f50-ad4b-f1bdfd881067",
+        "domain_url": "/v2/shared_domains/62055720-e453-4f50-ad4b-f1bdfd881067",
+        "host": "spring-music",
+        "path": "",
+        "port": null,
+        "route_mappings_url": "/v2/routes/ad4497b2-8a98-4ba0-a52e-aba34f54cad4/route_mappings",
+        "service_instance_guid": null,
+        "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+        "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b"
+      },
+      "metadata": {
+        "created_at": "2017-11-14T12:01:40Z",
+        "guid": "ad4497b2-8a98-4ba0-a52e-aba34f54cad4",
+        "updated_at": "2017-11-14T12:01:40Z",
+        "url": "/v2/routes/ad4497b2-8a98-4ba0-a52e-aba34f54cad4"
+      }
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+
+
+REQUEST: [2017-11-14T14:43:30-05:00]
+GET /v2/shared_domains/62055720-e453-4f50-ad4b-f1bdfd881067 HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:30-05:00]
+HTTP/1.1 200 OK
+Content-Length: 339
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 4e004d01-788f-41b3-60e5-1e6324ee99ec
+X-Vcap-Request-Id: e90588b5-9eeb-4f2f-400b-361af63a811d::7014eb5b-b8a6-4f88-bcb6-1381d2bcfcb3
+{
+  "entity": {
+    "name": "local.pcfdev.io",
+    "router_group_guid": null,
+    "router_group_type": null
+  },
+  "metadata": {
+    "created_at": "2017-11-06T19:05:51Z",
+    "guid": "62055720-e453-4f50-ad4b-f1bdfd881067",
+    "updated_at": "2017-11-14T10:10:53Z",
+    "url": "/v2/shared_domains/62055720-e453-4f50-ad4b-f1bdfd881067"
+  }
+}
+
+
+REQUEST: [2017-11-14T14:43:30-05:00]
+GET /v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05 HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T14:43:30-05:00]
+HTTP/1.1 200 OK
+Content-Length: 323
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 14:43:28 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 56507b14-56b2-4699-4db4-59fccdc1cca9
+X-Vcap-Request-Id: 36706ab0-fc3c-41f3-71a5-d286eb3bf517::828e923d-3bf4-4685-b8c6-b3f15429242a
+{
+  "entity": {
+    "description": "Cloud Foundry Linux-based filesystem",
+    "name": "cflinuxfs2"
+  },
+  "metadata": {
+    "created_at": "2017-11-06T19:05:45Z",
+    "guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+    "updated_at": "2017-11-06T19:05:45Z",
+    "url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05"
+  }
+}
+
+
+name:              spring-music
+requested state:   started
+instances:         1/1
+usage:             1G x 1 instances
+routes:            spring-music.local.pcfdev.io
+last uploaded:     Tue 14 Nov 07:32:55 EST 2017
+stack:             cflinuxfs2
+buildpack:         container-certificate-trust-store=2.0.0_RELEASE
+                   java-buildpack=v3.13-offline-https://github.com/cloudfoundry/java-buildpack.git#03b493f
+                   java-main open-jdk-like-jre=1.8.0_121
+                   open-jdk-like-memory-calculator=2.0.2_RELEASE
+                   spring-auto-reconfiguration=1.10...
+start command:     CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE
+                   -memorySizes=metaspace:64m..,stack:228k..
+                   -memoryWeights=heap:65,metaspace:10,native:15,stack:10
+                   -memoryInitials=heap:100%,metaspace:100% -stackThreads=300
+                   -totMemory=$MEMORY_LIMIT) &&
+                   JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR
+                   -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh
+                   $CALCULATED_MEMORY
+                   -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks
+                   -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password"
+                   && SERVER_PORT=$PORT eval exec
+                   $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp
+                   $PWD/. org.springframework.boot.loader.JarLauncher
+
+     state     since                  cpu      memory         disk             details
+#0   running   2017-11-14T14:43:27Z   251.0%   488.8M of 1G   170.1M of 512M
+C02JPR3UDKQ1:spring-music e069131$

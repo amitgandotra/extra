@@ -1,0 +1,300 @@
+C02JPR3UDKQ1:spring-music e069131$ cf logs spring-music --recent -v
+REQUEST: [2017-11-14T13:01:11-05:00]
+GET /v2/info HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T13:01:11-05:00]
+HTTP/1.1 200 OK
+Content-Length: 594
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 13:01:09 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 819b206c-5972-41a1-6601-1752ff231b96
+X-Vcap-Request-Id: ade738bd-a5b8-4a79-4eb5-82a9b8f12b25::d54d837e-7f5d-4d5d-a7fc-fbfb6c419f73
+{
+  "api_version": "2.82.0",
+  "app_ssh_endpoint": "ssh.local.pcfdev.io:2222",
+  "app_ssh_host_key_fingerprint": "a6:d1:08:0b:b0:cb:9b:5f:c4:ba:44:2a:97:26:19:8a",
+  "app_ssh_oauth_client": "ssh-proxy",
+  "authorization_endpoint": "https://login.local.pcfdev.io",
+  "build": "4af54097fef22734d857410ddfb89ee979087911",
+  "description": "",
+  "doppler_logging_endpoint": "wss://doppler.local.pcfdev.io:443",
+  "min_cli_version": null,
+  "min_recommended_cli_version": null,
+  "name": "pcfdev",
+  "routing_endpoint": "https://api.local.pcfdev.io/routing",
+  "support": "pcfdev@pivotal.io",
+  "token_endpoint": "https://uaa.local.pcfdev.io",
+  "version": 0
+}
+
+
+REQUEST: [2017-11-14T13:01:11-05:00]
+GET /login HTTP/1.1
+Host: login.local.pcfdev.io
+Accept: application/json
+Connection: close
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T13:01:11-05:00]
+HTTP/1.1 200 OK
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Cache-Control: no-store
+Content-Language: en-US
+Content-Length: 379
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 14 Nov 2017 13:01:09 GMT
+Expires: 0
+Pragma: no-cache
+Server: Apache-Coyote/1.1
+Set-Cookie: X-Uaa-Csrf=2GlSO9ppC31iWjz0D1CDXc; Expires=Thu, 14-Dec-2017 13:01:09 GMT; Secure; HttpOnly
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: 0903b492-85f9-4251-5805-b94e7bca17fa
+X-Xss-Protection: 1; mode=block
+{
+  "app": {
+    "version": "4.2.0"
+  },
+  "commit_id": "4bb775f",
+  "entityID": "login.local.pcfdev.io",
+  "idpDefinitions": {},
+  "links": {
+    "login": "https://login.local.pcfdev.io",
+    "passwd": "/forgot_password",
+    "register": "/create_account",
+    "uaa": "https://uaa.local.pcfdev.io"
+  },
+  "prompts": {
+    "password": [
+      "password",
+      "Password"
+    ],
+    "username": [
+      "text",
+      "Email"
+    ]
+  },
+  "timestamp": "2017-05-18T05:55:36+0000",
+  "zone_name": "uaa"
+}
+
+
+Retrieving logs for app spring-music in org pcfdev-org / space pcfdev-space as admin...
+
+REQUEST: [2017-11-14T13:01:11-05:00]
+GET /v2/apps?q=name%3Aspring-music&q=space_guid%3A422db549-1199-434f-91c2-9a053a39037b HTTP/1.1
+Host: api.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+
+RESPONSE: [2017-11-14T13:01:11-05:00]
+HTTP/1.1 200 OK
+Content-Length: 3077
+Content-Type: application/json;charset=utf-8
+Date: Tue, 14 Nov 2017 13:01:09 GMT
+Server: nginx
+X-Content-Type-Options: nosniff
+X-Vcap-Request-Id: 7b8c87a2-4c50-477f-6182-a9b258b45997
+X-Vcap-Request-Id: cb9734f7-36ee-41c4-4542-3c6c9099c4e9::96aff374-b796-43ee-800b-545c26e4e299
+{
+  "next_url": null,
+  "prev_url": null,
+  "resources": [
+    {
+      "entity": {
+        "buildpack": null,
+        "command": null,
+        "console": false,
+        "debug": null,
+        "detected_buildpack": "container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.13-offline-https://github.com/cloudfoundry/java-buildpack.git#03b493f java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...",
+        "detected_buildpack_guid": "f488fee2-1452-4b85-b088-241d6353be3d",
+        "detected_start_command": "CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS=\"-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password\" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher",
+        "diego": true,
+        "disk_quota": 512,
+        "docker_credentials": {
+          "password": null,
+          "username": null
+        },
+        "docker_image": null,
+        "enable_ssh": true,
+        "environment_json": {},
+        "events_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/events",
+        "health_check_http_endpoint": null,
+        "health_check_timeout": null,
+        "health_check_type": "port",
+        "instances": 1,
+        "memory": 1024,
+        "name": "spring-music",
+        "package_state": "STAGED",
+        "package_updated_at": "2017-11-14T12:32:55Z",
+        "ports": [
+          8080
+        ],
+        "production": false,
+        "route_mappings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/route_mappings",
+        "routes_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/routes",
+        "service_bindings_url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee/service_bindings",
+        "space_guid": "422db549-1199-434f-91c2-9a053a39037b",
+        "space_url": "/v2/spaces/422db549-1199-434f-91c2-9a053a39037b",
+        "stack_guid": "5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+        "stack_url": "/v2/stacks/5929f27f-62e7-4ccd-a43a-02abbf7c3f05",
+        "staging_failed_description": null,
+        "staging_failed_reason": null,
+        "staging_task_id": "4a7ee5d5-b71e-40a7-9fdc-8bb3dfb4477f",
+        "state": "STARTED",
+        "version": "336476d8-341a-49cc-a5b6-f16e20e65a22"
+      },
+      "metadata": {
+        "created_at": "2017-11-14T12:01:40Z",
+        "guid": "2d2a0431-38a9-4b27-9190-74b4de006cee",
+        "updated_at": "2017-11-14T12:33:01Z",
+        "url": "/v2/apps/2d2a0431-38a9-4b27-9190-74b4de006cee"
+      }
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+
+
+REQUEST: [2017-11-14T13:01:11-05:00]
+POST /oauth/token HTTP/1.1
+Host: login.local.pcfdev.io
+Accept: application/json
+Authorization: [PRIVATE DATA HIDDEN]
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+User-Agent: cf/6.32.0+0191c33d9.2017-09-26 (go1.9; amd64 darwin)
+[PRIVATE DATA HIDDEN]
+
+RESPONSE: [2017-11-14T13:01:11-05:00]
+HTTP/1.1 200 OK
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Content-Type: application/json;charset=UTF-8
+Date: Tue, 14 Nov 2017 13:01:09 GMT
+Expires: 0
+Pragma: no-cache
+Server: Apache-Coyote/1.1
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Vcap-Request-Id: 1fcc2daf-f864-4c4e-79e0-8ab7fa8ec8db
+X-Xss-Protection: 1; mode=block
+{
+  "access_token": "[PRIVATE DATA HIDDEN]",
+  "expires_in": 599,
+  "jti": "6f7714694894457dafbd10080c32ee58",
+  "refresh_token": "[PRIVATE DATA HIDDEN]",
+  "scope": "openid routing.router_groups.write network.write scim.read cloud_controller.admin uaa.user routing.router_groups.read cloud_controller.read password.write cloud_controller.write network.admin doppler.firehose scim.write",
+  "token_type": "[PRIVATE DATA HIDDEN]"
+}
+
+
+   2017-11-14T07:33:43.79-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:43.790  INFO 7 --- [           main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+   2017-11-14T07:33:45.06-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:45.064  INFO 7 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+   2017-11-14T07:33:45.09-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:45.096  INFO 7 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+   2017-11-14T07:33:45.09-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:45.098  INFO 7 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.15
+   2017-11-14T07:33:45.80-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:45.803  INFO 7 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+   2017-11-14T07:33:45.80-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:45.804  INFO 7 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4914 ms
+   2017-11-14T07:33:46.40-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.402  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.413  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.415  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.415  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.415  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.415  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.415  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+   2017-11-14T07:33:46.41-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:46.416  INFO 7 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+   2017-11-14T07:33:47.91-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:47.916  INFO 7 --- [           main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+   2017-11-14T07:33:47.95-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:47.949  INFO 7 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+   2017-11-14T07:33:47.95-0500 [APP/PROC/WEB/0] OUT 	name: default
+   2017-11-14T07:33:47.95-0500 [APP/PROC/WEB/0] OUT 	...]
+   2017-11-14T07:33:48.11-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:48.115  INFO 7 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+   2017-11-14T07:33:48.11-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:48.117  INFO 7 --- [           main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+   2017-11-14T07:33:48.12-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:48.121  INFO 7 --- [           main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+   2017-11-14T07:33:48.21-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:48.214  INFO 7 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+   2017-11-14T07:33:48.61-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:48.617  INFO 7 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+   2017-11-14T07:33:49.77-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:49.771  INFO 7 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+   2017-11-14T07:33:49.79-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:49.797  INFO 7 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+   2017-11-14T07:33:49.90-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:49.899  INFO 7 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+   2017-11-14T07:33:51.67-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.672  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@30946e09: startup date [Tue Nov 14 12:33:40 UTC 2017]; root of context hierarchy
+   2017-11-14T07:33:51.85-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.855  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albums],methods=[GET]}" onto public java.lang.Iterable<org.cloudfoundry.samples.music.domain.Album> org.cloudfoundry.samples.music.web.AlbumController.albums()
+   2017-11-14T07:33:51.85-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.858  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albums/{id}],methods=[GET]}" onto public org.cloudfoundry.samples.music.domain.Album org.cloudfoundry.samples.music.web.AlbumController.getById(java.lang.String)
+   2017-11-14T07:33:51.85-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.858  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albums/{id}],methods=[DELETE]}" onto public void org.cloudfoundry.samples.music.web.AlbumController.deleteById(java.lang.String)
+   2017-11-14T07:33:51.85-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.859  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albums],methods=[PUT]}" onto public org.cloudfoundry.samples.music.domain.Album org.cloudfoundry.samples.music.web.AlbumController.add(org.cloudfoundry.samples.music.domain.Album)
+   2017-11-14T07:33:51.85-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.859  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albums],methods=[POST]}" onto public org.cloudfoundry.samples.music.domain.Album org.cloudfoundry.samples.music.web.AlbumController.update(org.cloudfoundry.samples.music.domain.Album)
+   2017-11-14T07:33:51.86-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.860  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/errors/kill]}" onto public void org.cloudfoundry.samples.music.web.ErrorController.kill()
+   2017-11-14T07:33:51.86-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.860  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/errors/throw]}" onto public void org.cloudfoundry.samples.music.web.ErrorController.throwException()
+   2017-11-14T07:33:51.86-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.862  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/appinfo]}" onto public org.cloudfoundry.samples.music.domain.ApplicationInfo org.cloudfoundry.samples.music.web.InfoController.info()
+   2017-11-14T07:33:51.86-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.862  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/service]}" onto public java.util.List<org.springframework.cloud.service.ServiceInfo> org.cloudfoundry.samples.music.web.InfoController.showServiceInfo()
+   2017-11-14T07:33:51.86-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.865  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+   2017-11-14T07:33:51.86-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.865  INFO 7 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+   2017-11-14T07:33:51.98-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.985  INFO 7 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+   2017-11-14T07:33:51.98-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:51.985  INFO 7 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+   2017-11-14T07:33:52.06-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:52.068  INFO 7 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+   2017-11-14T07:33:52.11-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:52.113  INFO 7 --- [           main] oConfiguration$WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+   2017-11-14T07:33:53.06-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:53.063  INFO 7 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:53.194  INFO 7 --- [localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT com.mongodb.MongoSocketOpenException: Exception opening socket
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at com.mongodb.connection.SocketStream.open(SocketStream.java:63) ~[mongodb-driver-core-3.4.2.jar!/:na]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at com.mongodb.connection.InternalStreamConnection.open(InternalStreamConnection.java:115) ~[mongodb-driver-core-3.4.2.jar!/:na]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at com.mongodb.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:113) ~[mongodb-driver-core-3.4.2.jar!/:na]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT Caused by: java.net.ConnectException: Connection refused (Connection refused)
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at java.net.Socket.connect(Socket.java:589) ~[na:1.8.0_121]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at com.mongodb.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:57) ~[mongodb-driver-core-3.4.2.jar!/:na]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	at com.mongodb.connection.SocketStream.open(SocketStream.java:58) ~[mongodb-driver-core-3.4.2.jar!/:na]
+   2017-11-14T07:33:53.19-0500 [APP/PROC/WEB/0] OUT 	... 3 common frames omitted
+   2017-11-14T07:33:54.22-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.220  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.22-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.222  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.22-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.224  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.229  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.229  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.233  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.235  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.235  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.237  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.23-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.238  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.239  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.240  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.242  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.243  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.243  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.244  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.24-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.245  INFO 7 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.58-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.588  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/dump || /cloudfoundryapplication/dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.591  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/health || /cloudfoundryapplication/health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.592  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/beans || /cloudfoundryapplication/beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.594  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/autoconfig || /cloudfoundryapplication/autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.595  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.596  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/env || /cloudfoundryapplication/env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.597  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.598  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+   2017-11-14T07:33:54.59-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.598  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/loggers || /cloudfoundryapplication/loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.602  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/mappings || /cloudfoundryapplication/mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.603  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/trace || /cloudfoundryapplication/trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.604  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/heapdump || /cloudfoundryapplication/heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.605  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/auditevents || /cloudfoundryapplication/auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.606  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.607  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/metrics || /cloudfoundryapplication/metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.60-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.608  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/info || /cloudfoundryapplication/info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.61-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.609  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication/configprops || /cloudfoundryapplication/configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+   2017-11-14T07:33:54.61-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:54.613  INFO 7 --- [           main] b.a.c.CloudFoundryEndpointHandlerMapping : Mapped "{[/cloudfoundryapplication || /cloudfoundryapplication.json],produces=[application/json]}" onto public java.util.Map<java.lang.String, java.util.Map<java.lang.String, org.springframework.boot.actuate.cloudfoundry.CloudFoundryDiscoveryMvcEndpoint$Link>> org.springframework.boot.actuate.cloudfoundry.CloudFoundryDiscoveryMvcEndpoint.links(javax.servlet.http.HttpServletRequest)
+   2017-11-14T07:33:55.03-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:55.031  INFO 7 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+   2017-11-14T07:33:55.06-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:55.067  INFO 7 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+   2017-11-14T07:33:55.27-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:55.275  INFO 7 --- [           main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+   2017-11-14T07:33:55.88-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:55.886  INFO 7 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+   2017-11-14T07:33:55.90-0500 [APP/PROC/WEB/0] OUT 2017-11-14 12:33:55.906  INFO 7 --- [           main] o.c.samples.music.Application            : Started Application in 17.699 seconds (JVM running for 18.913)
+   2017-11-14T07:33:57.72-0500 [CELL/0] OUT Container became healthy
+C02JPR3UDKQ1:spring-music e069131$
